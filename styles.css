@@ -575,3 +575,42 @@ button{font:inherit;cursor:pointer}
     transform: none !important;
   }
 }
+
+/* Mobile marquee v3: no scroll observer or script dependency for default playback. */
+.poem-marquee .poem-marquee-track {
+  display: flex !important;
+  width: max-content !important;
+  -webkit-animation: poem-flow-left-mobile 12s linear infinite !important;
+  animation: poem-flow-left-mobile 12s linear infinite !important;
+  -webkit-animation-play-state: running !important;
+  animation-play-state: running !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.poem-motion-toggle {
+  display: none;
+  position: absolute;
+  z-index: 5;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 18px;
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 24px;
+  color: #fff;
+  background: rgba(0,0,0,.45);
+  font: 18px sans-serif;
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: reduce) {
+  .poem-marquee .poem-marquee-track {
+    -webkit-animation: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+  .poem-motion-toggle { display: block; }
+  .poem-marquee.poem-motion-enabled .poem-marquee-track {
+    -webkit-animation: poem-flow-left-mobile 12s linear infinite !important;
+    animation: poem-flow-left-mobile 12s linear infinite !important;
+  }
+}
