@@ -534,3 +534,16 @@ button{font:inherit;cursor:pointer}
   justify-content: center;
   box-sizing: border-box;
 }
+
+/* Reference-style, continuously right-to-left scrolling poem over the supplied floral green artwork. */
+.poem-marquee{height:1030px!important;overflow:hidden!important;position:relative;background:#202820 url('assets/01_bg.png') center center / 800px auto no-repeat!important;color:#f3f0e8}
+.poem-marquee-viewport{position:absolute;left:0;right:0;top:375px;height:310px;display:flex;align-items:center;overflow:hidden;mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%)}
+.poem-marquee-track{display:flex;flex-wrap:nowrap;width:max-content;animation:poem-flow-left 37s linear infinite;will-change:transform}
+.poem-marquee-copy{display:flex;flex-direction:column;justify-content:center;flex:none;width:max-content;min-width:2100px;padding-right:120px;box-sizing:border-box;gap:12px;white-space:nowrap;font-family:Josun,serif;font-weight:400;font-size:35px;line-height:1.2;letter-spacing:-1.2px}
+.poem-marquee-copy span{display:block}
+@keyframes poem-flow-left{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+.poem-marquee-credit{position:absolute;bottom:88px;left:0;width:100%;text-align:center;font-family:Josun,serif;font-size:19px;letter-spacing:-.5px}
+/* Crop the poem already baked into the old image, retaining only its greeting artwork. */
+.letter-greeting-cropped{height:970px!important;overflow:hidden!important;background:#f5f0e6!important}
+.letter-greeting-cropped .letter-composed{display:block;position:absolute!important;top:-1030px!important;left:0!important;width:800px!important;height:2000px!important;max-width:none!important;object-fit:fill!important}
+@media(prefers-reduced-motion:reduce){.poem-marquee-track{animation:none!important;transform:none!important}}
