@@ -436,3 +436,13 @@ button{font:inherit;cursor:pointer}
 .js-reveal-ready .reveal,.js-reveal-ready .reveal-left{opacity:0;transform:translate3d(0,52px,0);transition:opacity .72s ease,transform .72s cubic-bezier(.2,.7,.2,1);will-change:transform,opacity}
 .js-reveal-ready .reveal.is-visible,.js-reveal-ready .reveal-left.is-visible{opacity:1;transform:translate3d(0,0,0)}
 @media(prefers-reduced-motion:reduce){.js-reveal-ready .reveal,.js-reveal-ready .reveal-left{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* Verified correction: 03_tree only at bottom-left; top:auto overrides earlier top rules. */
+.letter .letter-tree{position:absolute!important;top:auto!important;right:auto!important;bottom:-260px!important;left:-95px!important;width:580px!important;height:auto!important;z-index:100!important;clip-path:none!important;pointer-events:none!important}
+.letter{overflow:visible!important}
+/* The 04bgf artwork contains the calendar and continues behind the location. */
+.calendar-location-bg{position:relative!important;width:800px!important;height:2000px!important;background:#203b2b url('assets/04bgf.png') no-repeat center top / 800px 2000px!important;overflow:hidden}
+.calendar-location-bg>.calendar,.calendar-location-bg>.location{background:transparent!important;background-image:none!important;margin-top:0!important;padding-top:0!important}
+.calendar-location-bg>.calendar{height:850px!important}
+.calendar-location-bg>.location{height:1150px!important}
+.calendar-location-bg .calendar-reference,.calendar-location-bg .calendar-lace,.calendar-location-bg .calendar-leaf,.calendar-location-bg .calendar-month,.calendar-location-bg .calendar-month-label,.calendar-location-bg .calendar-grid-wrap{display:none!important}
