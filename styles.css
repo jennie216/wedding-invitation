@@ -437,12 +437,29 @@ button{font:inherit;cursor:pointer}
 .js-reveal-ready .reveal.is-visible,.js-reveal-ready .reveal-left.is-visible{opacity:1;transform:translate3d(0,0,0)}
 @media(prefers-reduced-motion:reduce){.js-reveal-ready .reveal,.js-reveal-ready .reveal-left{opacity:1!important;transform:none!important;transition:none!important}}
 
-/* Verified correction: 03_tree only at bottom-left; top:auto overrides earlier top rules. */
-.letter .letter-tree{position:absolute!important;top:auto!important;right:auto!important;bottom:-260px!important;left:-95px!important;width:580px!important;height:auto!important;z-index:100!important;clip-path:none!important;pointer-events:none!important}
-.letter{overflow:visible!important}
-/* The 04bgf artwork contains the calendar and continues behind the location. */
-.calendar-location-bg{position:relative!important;width:800px!important;height:2000px!important;background:#203b2b url('assets/04bgf.png') no-repeat center top / 800px 2000px!important;overflow:hidden}
-.calendar-location-bg>.calendar,.calendar-location-bg>.location{background:transparent!important;background-image:none!important;margin-top:0!important;padding-top:0!important}
-.calendar-location-bg>.calendar{height:850px!important}
-.calendar-location-bg>.location{height:1150px!important}
-.calendar-location-bg .calendar-reference,.calendar-location-bg .calendar-lace,.calendar-location-bg .calendar-leaf,.calendar-location-bg .calendar-month,.calendar-location-bg .calendar-month-label,.calendar-location-bg .calendar-grid-wrap{display:none!important}
+/* === Accumulated requests, October 10: latest overrides === */
+/* The poem credit is 35px below the poem text's bottom, in the 800px design canvas. */
+.poem-by{top:calc(149px + 36px * 1.14 * 11 + 35px);}
+/* Pearl decoration remains in front of all foreground sections. */
+.poem{z-index:20;overflow:visible}
+.pearl-flower{z-index:9999!important;position:absolute!important;pointer-events:none}
+.letter-title{top:110px!important;font-weight:900!important;-webkit-text-stroke:.65px currentColor}
+.location-head{top:166px!important}
+.location-head h2,.information .section-header h2,.accounts .section-header h2{
+  font-weight:900!important;-webkit-text-stroke:1px currentColor;
+}
+/* Match the existing divider style from the accounts area. */
+.information-divider{position:absolute;left:95px;right:95px;top:325px;height:1px;background:#8b8a83;opacity:.9}
+.information-items{top:428px!important}
+/* 08 section ends, then a 100px gap to the two-line account heading. */
+.information{height:850px!important}
+.accounts{padding-top:100px!important;padding-bottom:0!important;min-height:0!important}
+.accounts>.section-header{margin-bottom:66px}
+.accounts .section-header h2{max-width:360px;margin:0 auto;line-height:1.25}
+.account-box,.account-panel,.account-panel-inner,.account-entry{background:transparent!important}
+.account-box{padding-bottom:0!important}
+.account-entry{background-color:transparent!important}
+/* Flow-based sharing: at least 40px after an expanded bride accordion, with
+   reserved space equal to the bride panel's fully expanded content. */
+.share{height:240px!important;margin-top:40px!important;display:grid;place-items:start center;padding-top:0!important}
+.ending-unified{padding-bottom:180px}
