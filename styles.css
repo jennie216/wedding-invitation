@@ -535,82 +535,16 @@ button{font:inherit;cursor:pointer}
   box-sizing: border-box;
 }
 
-/* Reference-style, continuously right-to-left scrolling poem over the supplied floral green artwork. */
-.poem-marquee{height:1030px!important;overflow:hidden!important;position:relative;background:#202820 url('assets/01_bg.png') center center / 800px auto no-repeat!important;color:#f3f0e8}
-.poem-marquee-viewport{position:absolute;left:0;right:0;top:375px;height:310px;display:flex;align-items:center;overflow:hidden;mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%)}
-.poem-marquee-track{display:flex;flex-wrap:nowrap;width:max-content;animation:poem-flow-left 37s linear infinite;will-change:transform}
-.poem-marquee-copy{display:flex;flex-direction:column;justify-content:center;flex:none;width:max-content;min-width:2100px;padding-right:120px;box-sizing:border-box;gap:12px;white-space:nowrap;font-family:Josun,serif;font-weight:400;font-size:35px;line-height:1.2;letter-spacing:-1.2px}
+
+/* v5: video-inspired five-line marquee, using the user's green floral background. */
+.poem-marquee{height:1030px!important;position:relative;overflow:hidden!important;background:#202820 url("assets/01_bg.png") center center/800px auto no-repeat!important;color:#f4f0e7}
+.poem-marquee-viewport{position:absolute;left:0;right:0;top:342px;height:370px;display:flex;align-items:center;overflow:hidden;isolation:isolate}
+.poem-marquee-track{display:flex!important;flex-wrap:nowrap!important;width:max-content!important;max-width:none!important;opacity:1!important;visibility:visible!important;animation:poem-flow-v5 18s linear infinite!important;-webkit-animation:poem-flow-v5 18s linear infinite!important;animation-play-state:running!important;will-change:transform}
+.poem-marquee-copy{display:flex;flex-direction:column;flex:0 0 auto;width:2300px;box-sizing:border-box;justify-content:center;gap:14px;padding-right:0;white-space:nowrap;font-family:Josun,serif;font-weight:700;font-size:48px;line-height:1.32;letter-spacing:-1.2px;text-shadow:0 1px 1px rgba(0,0,0,.25)}
 .poem-marquee-copy span{display:block}
-@keyframes poem-flow-left{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
-.poem-marquee-credit{position:absolute;bottom:88px;left:0;width:100%;text-align:center;font-family:Josun,serif;font-size:19px;letter-spacing:-.5px}
-/* Crop the poem already baked into the old image, retaining only its greeting artwork. */
+@keyframes poem-flow-v5{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@-webkit-keyframes poem-flow-v5{from{-webkit-transform:translate3d(0,0,0)}to{-webkit-transform:translate3d(-50%,0,0)}}
+.poem-marquee-credit{position:absolute;bottom:88px;left:0;width:100%;text-align:center;font-family:Josun,serif;font-size:20px;letter-spacing:-.5px}
 .letter-greeting-cropped{height:970px!important;overflow:hidden!important;background:#f5f0e6!important}
 .letter-greeting-cropped .letter-composed{display:block;position:absolute!important;top:-1030px!important;left:0!important;width:800px!important;height:2000px!important;max-width:none!important;object-fit:fill!important}
-@media(prefers-reduced-motion:reduce){.poem-marquee-track{animation:none!important;transform:none!important}}
-
-/* Mobile marquee reliability patch: always animate independently of scroll JS. */
-.poem-marquee .poem-marquee-track{
-  -webkit-animation: poem-flow-left-mobile 17s linear infinite !important;
-  animation: poem-flow-left-mobile 17s linear infinite !important;
-  -webkit-animation-play-state: running !important;
-  animation-play-state: running !important;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform: translate3d(0,0,0);
-  will-change: transform;
-}
-@-webkit-keyframes poem-flow-left-mobile {
-  0% { -webkit-transform: translate3d(0,0,0); transform:translate3d(0,0,0); }
-  100% { -webkit-transform: translate3d(-50%,0,0); transform:translate3d(-50%,0,0); }
-}
-@keyframes poem-flow-left-mobile {
-  0% { transform: translate3d(0,0,0); }
-  100% { transform: translate3d(-50%,0,0); }
-}
-/* Honor OS accessibility preferences without hiding the text. */
-@media (prefers-reduced-motion: reduce) {
-  .poem-marquee .poem-marquee-track{
-    -webkit-animation: none !important;
-    animation: none !important;
-    transform: none !important;
-  }
-}
-
-/* Mobile marquee v3: no scroll observer or script dependency for default playback. */
-.poem-marquee .poem-marquee-track {
-  display: flex !important;
-  width: max-content !important;
-  -webkit-animation: poem-flow-left-mobile 12s linear infinite !important;
-  animation: poem-flow-left-mobile 12s linear infinite !important;
-  -webkit-animation-play-state: running !important;
-  animation-play-state: running !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-.poem-motion-toggle {
-  display: none;
-  position: absolute;
-  z-index: 5;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 12px 18px;
-  border: 1px solid rgba(255,255,255,.55);
-  border-radius: 24px;
-  color: #fff;
-  background: rgba(0,0,0,.45);
-  font: 18px sans-serif;
-  cursor: pointer;
-}
-@media (prefers-reduced-motion: reduce) {
-  .poem-marquee .poem-marquee-track {
-    -webkit-animation: none !important;
-    animation: none !important;
-    transform: none !important;
-  }
-  .poem-motion-toggle { display: block; }
-  .poem-marquee.poem-motion-enabled .poem-marquee-track {
-    -webkit-animation: poem-flow-left-mobile 12s linear infinite !important;
-    animation: poem-flow-left-mobile 12s linear infinite !important;
-  }
-}
+.poem-motion-toggle{display:none!important}

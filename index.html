@@ -12,7 +12,7 @@
   <title>김병직 그리고 김정은, 결혼합니다</title>
   <link rel="preload" as="image" href="assets/00_BG_HERO.jpg">
   <link rel="preload" as="image" href="assets/00_HERO_main.jpg">
-  <link rel="stylesheet" href="styles.css?v=20261011-marquee-mobile-v3">
+  <link rel="stylesheet" href="styles.css?v=20261011-poem-video-v5">
   <script src="script.js?v=20261010b" defer></script>
 </head>
 <body>
@@ -42,7 +42,6 @@
             <div class="poem-marquee-copy"><span>나는 손짓합니다　오세요, 나의 집으로　저기 저 산 보이나요</span><span>막혔던 벽에 창을 내고　당신을 위한 식탁을 차리고</span><span>창가엔 작은 꽃병을 놓아두었으니　우리 함께 산을 옮겨요</span><span>저렇게 큰 산을 어떻게 옮기냐고요　네, 산은 옮길 수 없으니 산이지요</span><span>하지만 내 안에서 당신이 솟아올랐으므로　나는 높습니다</span></div>
           </div>
         </div>
-        <button class="poem-motion-toggle" type="button" aria-label="시구 애니메이션 재생">시구 움직이기 ▶</button>
         <p class="poem-marquee-credit">정훈 · 안희연</p>
       </section>
       <section class="letter section letter-image-only letter-greeting-cropped" aria-label="초대 인사말">
@@ -141,19 +140,6 @@
     <figure class="lightbox-figure"><img id="lightbox-image" alt="확대된 웨딩 사진"><figcaption id="lightbox-caption">01 / 27</figcaption></figure>
     <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="다음 사진">›</button>
   </div>
-  <script>
-    (function(){
-      var toggle = document.querySelector('.poem-motion-toggle');
-      var section = document.querySelector('.poem-marquee');
-      if (!toggle || !section) return;
-      toggle.addEventListener('click', function(){
-        section.classList.toggle('poem-motion-enabled');
-        var on = section.classList.contains('poem-motion-enabled');
-        toggle.textContent = on ? '시구 멈추기 ❚❚' : '시구 움직이기 ▶';
-        toggle.setAttribute('aria-label', on ? '시구 애니메이션 멈추기' : '시구 애니메이션 재생');
-      });
-    })();
-  </script>
   <div id="toast" class="toast" role="status" aria-live="polite">계좌번호가 복사되었습니다.</div>
 </body>
 </html>
