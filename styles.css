@@ -514,3 +514,23 @@ button{font:inherit;cursor:pointer}
 .information .information-divider{top:360px!important}
 .information .information-divider-bottom{top:740px!important}
 .information .information-items{top:440px!important}
+
+
+/* Latest corrections: composed greeting, hotel centering, information divider. */
+/* Hotel artwork is centered in the gap between LOCATION and venue text. */
+.calendar-location-bg .hotel-illustration {
+  top: 392px !important;
+}
+/* Move only the lower divider 20px down. */
+.information .information-divider-bottom {
+  top: 760px !important;
+}
+/* Center the parking/ATM group between the two divider lines. */
+.information .information-items {
+  top: 360px !important;
+  height: 400px !important;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
