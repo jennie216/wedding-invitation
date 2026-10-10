@@ -1,0 +1,382 @@
+@font-face{font-family:Josun;src:url("assets/fonts/josun_fixed.woff2") format("woff2"),url("assets/fonts/josunmyeongjo.ttf") format("truetype");font-display:swap}
+@font-face{font-family:Chosun;src:url("assets/fonts/ChosunSg.web.woff2") format("woff2"),url("assets/fonts/ChosunSg.TTF") format("truetype");font-display:swap}
+@font-face{font-family:Pretendard;src:url("assets/fonts/Pretendard-SemiBold.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:Pretendard;src:url("assets/fonts/Pretendard-SemiBold.woff2") format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:Pretendard;src:url("assets/fonts/Pretendard-Bold.woff2") format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:Josefin;src:url("assets/fonts/JosefinSlab-Light.ttf") format("truetype");font-display:swap}
+@font-face{font-family:Spectral;src:url("assets/fonts/SpectralSC-Regular.ttf") format("truetype");font-display:swap}
+@font-face{font-family:GothamNarrow;src:url("assets/fonts/Pretendard-SemiBold.woff2") format("woff2");font-display:swap}
+:root{color-scheme:light;--paper:#fdfaf1;--dark:#131313;--olive:#667259}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#131313}
+body{margin:0;background:#131313;color:#151515;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button{font:inherit;cursor:pointer}
+#invitation{width:100%;max-width:720px;margin:0 auto;position:relative;overflow:hidden;background:#fdfcf7;min-height:100vh}
+#canvas{position:absolute;top:0;left:0;width:800px;transform-origin:left top;overflow:visible;background:#fdfcf7}
+.section{width:800px;position:relative;isolation:isolate;overflow:hidden}
+.hero,.letter,.information,.accounts{background:#fdfaf1 url('assets/00_background.jpg') repeat-y center top / 100% auto}
+.reveal{opacity:0;transform:translate3d(0,55px,0);transition:transform .85s cubic-bezier(.2,.7,.2,1),opacity .85s ease;will-change:transform,opacity}
+.reveal.is-visible{opacity:1;transform:translate3d(0,0,0)}
+.reveal-left{opacity:.2;transform:translate3d(-120px,0,0);transition-duration:1.05s}
+.reveal-left.is-visible{opacity:1;transform:translate3d(0,0,0)}
+/* Opening image, flowers and couple portrait */
+.hero{height:1970px}
+.hero-top{position:absolute;top:0;left:0;width:800px;height:890px;background:#111 url('assets/00_BG_HERO.jpg') no-repeat center top / 800px auto}
+.hero-invited{position:absolute;width:680px;left:-27px;top:181px;z-index:3;pointer-events:none}
+.portrait{position:absolute;left:185px;top:597px;width:394px;height:555px;padding:9px;background:#060606;box-shadow:15px 20px 15px rgba(0,0,0,.38),0 1px 3px rgba(0,0,0,.3);z-index:5}
+.portrait img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+.hero-flower{position:absolute;object-fit:contain;pointer-events:none;z-index:4}
+.hero-flower-right{width:310px;left:622px;top:904px;transform-origin:center}
+.hero-flower-left{width:480px;left:-145px;top:1367px}
+.hero-flower-bottom{width:340px;left:590px;top:1529px;rotate:-46deg}
+.hero-flower-bottom.is-visible{transform:translate3d(0,0,0)}
+.hero-names{position:absolute;top:1260px;width:100%;text-align:center;font-family:Josun,serif;color:#000;z-index:5}
+.hero-names p{margin:0;font-size:49px;line-height:1.48;font-weight:400;white-space:nowrap}
+.hero-names .infinity{font-family:Georgia,serif;font-size:43px;vertical-align:1px;letter-spacing:-4px;margin:0 14px}
+.hero-names .hero-subtitle{font-size:36px}
+.hero-details{position:absolute;top:1483px;left:205px;width:510px;z-index:6;color:#000;font-family:Chosun,serif;font-size:28px;line-height:1.8}
+.hero-detail{display:flex;align-items:center;gap:14px;white-space:nowrap}
+.hero-detail img{width:34px;height:34px;object-fit:contain}
+/* Poem on embossed black paper */
+.poem{height:1030px;background:#20271f url('assets/01_bg.png') no-repeat center -110px / 800px 1430px;color:#daded9}
+.poem-text{position:absolute;top:185px;left:31px;width:738px;text-align:center;font-family:Josun,serif;font-size:34px;line-height:1.12;letter-spacing:-1.1px;font-weight:400;text-wrap:nowrap}
+.poem-by{position:absolute;top:726px;left:270px;width:260px;text-align:center;font-family:Josun,serif;font-size:24px;margin:0}
+.pearl-flower{display:none}
+/* Invitation letter */
+.letter{height:810px;overflow:visible}
+.letter-title{position:absolute;left:55px;top:113px;font:normal 70px/1.2 Josun,serif;letter-spacing:-2px;text-transform:uppercase;white-space:nowrap;margin:0;color:#000}
+.letter-message{position:absolute;top:268px;left:61px;z-index:4;font:normal 23px/1.38 Chosun,serif;letter-spacing:-.8px;color:#000;white-space:nowrap}
+.letter-pearl{position:absolute;width:470px;left:468px;top:-300px;clip-path:inset(0 0 220px 0);z-index:8;pointer-events:none}
+.letter-tree{position:absolute;width:515px;left:-91px;bottom:-160px;z-index:5;pointer-events:none}
+.letter-torn{position:absolute;left:0;bottom:-90px;width:800px;height:250px;background:url('assets/03_bgblk.png') no-repeat center 0 / 800px auto;z-index:3;pointer-events:none}
+/* The couple and horizontally draggable 27-image gallery */
+.couple-gallery{height:2380px;color:#ededeb;background:#111 url('assets/03_bgblk.png') repeat-y center top / 800px auto;}
+.gallery-pattern{position:absolute;width:800px;left:0;top:1100px;opacity:.17;pointer-events:none}
+.couple{position:absolute;width:800px;text-align:center;font-family:Josun,serif;z-index:2}
+.couple-groom{top:312px}.couple-bride{top:593px}
+.couple>img{display:block;margin:0 auto -22px;width:109px;height:109px;object-fit:contain}
+.couple p{margin:0}.couple-parent{font-size:30px;line-height:1.4}.couple-name{font-size:44px;line-height:1.4}
+.gallery-sign{position:absolute;top:827px;left:255px;width:330px;height:590px;z-index:2}
+.gallery-sign img{width:100%;height:100%;object-fit:fill}
+.gallery-sign h2{position:absolute;left:0;right:0;top:166px;margin:0;text-align:center;font:normal 35px/1 Spectral,Georgia,serif;letter-spacing:1px;color:#e6e6e6}
+.gallery-area{position:absolute;top:1560px;left:0;width:800px;z-index:3}
+.gallery-helper{text-align:center;color:#d6d4c9;font-family:Chosun,serif;letter-spacing:2px;font-size:20px;margin:0 0 23px}
+.gallery-track{width:800px;display:flex;gap:40px;overflow-x:auto;overflow-y:hidden;padding:12px 215px 28px;scroll-snap-type:x mandatory;scroll-padding-left:215px;scrollbar-width:none;overscroll-behavior-inline:contain;touch-action:pan-x;cursor:grab;user-select:none;-webkit-overflow-scrolling:touch}
+.gallery-track::-webkit-scrollbar{display:none}
+.gallery-track.dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+.gallery-photo{appearance:none;border:0;box-shadow:0 14px 34px #0009;flex:0 0 370px;width:370px;height:525px;padding:0;background:#222;overflow:hidden;scroll-snap-align:center;transition:box-shadow .3s,scale .3s;position:relative}
+.gallery-photo:hover{box-shadow:0 18px 42px #000a;scale:1.015}
+.gallery-photo img{width:100%;height:100%;display:block;object-fit:cover;pointer-events:none}
+.gallery-bottom{display:flex;align-items:center;justify-content:center;gap:20px;color:#c9c9c0;font:19px/1 Spectral,serif;letter-spacing:3px;padding-top:14px}
+.gallery-progress{width:200px;height:1px;background:#85857c44;position:relative}
+.gallery-progress>div{height:2px;width:3.7%;background:#e2e2d8;transition:width .32s}
+/* December 2026 */
+.calendar{height:900px;background:#667259;color:#10160f}
+.calendar-lace{position:absolute;right:-235px;top:-35px;width:405px;height:730px;transform:scaleX(-1);object-fit:cover;object-position:top;z-index:1;pointer-events:none}
+.calendar-leaf{position:absolute;z-index:2;pointer-events:none}
+.calendar-leaf-left{width:410px;left:-161px;top:-85px}
+.calendar-leaf-right{width:500px;right:-290px;bottom:-265px;transform:rotate(83deg)}
+.calendar-month{position:absolute;left:116px;top:60px;margin:0;font:normal 158px/1 Georgia,serif;letter-spacing:-10px;color:#000;text-shadow:-7px -7px 10px #0006;z-index:4}
+.calendar-month-label{position:absolute;right:72px;top:108px;text-align:center;margin:0;font:18px/1.1 Spectral,serif;z-index:4}
+.calendar-grid-wrap{position:absolute;top:292px;left:93px;width:610px;z-index:4;font-family:Josun,serif}
+.calendar-days{display:grid;grid-template-columns:repeat(7,1fr);font-family:Spectral,Georgia,serif;font-size:34px;line-height:1.2;text-align:center;letter-spacing:-2px}
+.calendar-dates{margin-top:20px;display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:72px;place-items:center;font-size:27px}
+.calendar-day{display:grid;place-items:center;width:70px;height:70px;position:relative}
+.calendar-day.sunday{color:#b77d6d}
+.calendar-day.wedding-date{font-weight:500}
+.calendar-day.wedding-date::after{content:"";position:absolute;inset:0;background:url('assets/05_doodle.png') no-repeat center/80px 80px;pointer-events:none}
+/* Hotel and driving directions */
+.location{height:1210px;background:#203b2b url('assets/06_bk.png') no-repeat center center / 800px 1250px}
+.location-head{position:absolute;top:151px;width:100%;text-align:center;font-family:Josun,serif}
+.location-head h2{font:normal 55px/1.15 Josun,serif;color:#000;margin:0}
+.location-head p{font:normal 26px/1.5 Josun,serif;color:#fff;margin:5px 0 0}
+.hotel-illustration{position:absolute;width:760px;height:424px;object-fit:contain;left:20px;top:300px}
+.location-address{position:absolute;top:825px;width:100%;text-align:center;font:25px/1.5 Chosun,serif;color:#fff}
+.location-address p{margin:0}.location-address p:nth-child(2){color:#99ad84;font-size:23px}.location-address .hall-name{font-size:17px;color:#c8d1bd;margin-top:11px;letter-spacing:1.5px}
+.map-links{position:absolute;left:91px;right:91px;bottom:100px;display:flex;gap:28px}
+.map-link{height:54px;min-width:0;flex:1;border-radius:8px;border:1px solid #131313;background:rgba(240,238,229,.15);display:flex;justify-content:center;align-items:center;gap:11px;color:#fdfcf7;text-decoration:none;font:600 19px/1 Pretendard,Arial,sans-serif;white-space:nowrap;transition:opacity .16s}
+.map-link:active{opacity:.3}
+.map-link span{font-family:Arial,sans-serif;font-weight:800;font-size:28px;line-height:1;color:#fff}
+.map-link .map-kakao{font-size:0;position:relative;display:inline-block;width:25px;height:19px;border-radius:50%;background:#fff;flex:0 0 auto}.map-link .map-kakao::after{content:"";position:absolute;width:9px;height:9px;background:#fff;left:4px;bottom:-3px;transform:rotate(-25deg);clip-path:polygon(0 0,100% 0,0 100%)}.map-link .map-tmap{font-size:29px}
+/* Useful information */
+.information{height:920px}
+.information-top{width:800px;height:110px;position:absolute;top:0;left:0;object-fit:cover;pointer-events:none}
+.section-header{width:100%;text-align:center;color:#000}
+.section-header h2{margin:0;font:normal 59px/1.23 Josun,serif;letter-spacing:-2px}
+.section-header p{margin:3px 0 0;font:normal 28px/1.3 Josefin,Georgia,serif;text-transform:uppercase;color:#5b7857}
+.information>.section-header{position:absolute;top:171px}
+.information-items{position:absolute;top:389px;width:800px;text-align:center;font:600 23px/1.42 Pretendard,Arial,sans-serif;color:#1b1b1b;letter-spacing:-1px}
+.information-item h3{font:700 31px/1.4 Pretendard,Arial,sans-serif;margin:0 0 33px}
+.information-item p{margin:0}.information-item+.information-item{margin-top:95px}
+/* Pay respects, expandable bank transfer details */
+.accounts{padding:35px 0 170px;min-height:750px;overflow:visible}
+.accounts>.section-header{margin-bottom:55px}
+.account-box{position:relative;margin:0 auto;width:610px;padding:54px 49px 61px;background:#fdfcf7;font:600 22px/1.4 Pretendard,Arial,sans-serif}
+.account-group{border-top:1px solid #8b8a83}
+.account-group:last-child{border-bottom:1px solid #8b8a83}
+.account-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;padding:29px 18px;border:0;background:none;text-align:left;font:600 24px/1.4 Pretendard,Arial,sans-serif;color:#131313}
+.account-toggle:focus-visible,.copy-btn:focus-visible,.gallery-photo:focus-visible,.map-link:focus-visible,.share-buttons a:focus-visible{outline:4px solid #667259;outline-offset:4px}
+.account-arrow{width:25px;height:20px;object-fit:contain;transform:rotate(180deg);transition:transform .3s ease}
+.account-toggle[aria-expanded=true] .account-arrow{transform:rotate(0deg)}
+.account-panel{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .47s cubic-bezier(.2,.7,.2,1),opacity .4s ease,visibility .4s}
+.account-toggle[aria-expanded=true]+.account-panel{grid-template-rows:1fr;opacity:1;visibility:visible}
+.account-panel-inner{min-height:0;overflow:hidden;padding:0 18px;transition:padding .4s}
+.account-toggle[aria-expanded=true]+.account-panel .account-panel-inner{padding-bottom:23px}
+.account-entry{border:1px solid #dedcd5;min-height:125px;padding:28px 25px;display:flex;justify-content:space-between;align-items:center;margin-bottom:23px;gap:24px}
+.account-entry p{margin:0 0 10px;font-size:21px}.account-entry p:last-child{margin-bottom:0}
+.account-entry b{font-weight:700}
+.copy-btn{width:48px;height:48px;border:1px solid #c8c8c2;background:#f4f4f0;border-radius:4px;display:grid;place-items:center;transition:background .2s,opacity .2s;flex:0 0 auto}
+.copy-btn:active{opacity:.35}.copy-btn img{width:27px;height:27px;object-fit:contain}
+/* Footer sharing row, continuous floral image with no gap */
+.share{height:238px;background:#fdfcf7;display:grid;place-items:center}
+.share-buttons{display:flex;gap:113px;justify-content:center;align-items:center}
+.share-buttons a{display:flex;flex-direction:column;align-items:center;gap:12px;text-decoration:none;color:#4b4b4a;font:23px/1 'Arial Narrow',Arial,sans-serif;letter-spacing:2.2px;transition:opacity .2s}
+.share-buttons a:active{opacity:.3}.share-buttons img{width:85px;height:85px;object-fit:contain}
+.footer{width:800px;height:455px;background:#fdfcf7;margin:0;padding:0;line-height:0}
+.footer img{display:block;width:100%;height:100%;object-fit:fill}
+/* Image lightbox intentionally lives outside scaled invitation canvas */
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;gap:clamp(0px,2vw,30px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;padding:70px 16px 52px;overscroll-behavior:contain}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox-figure{margin:0;max-width:calc(100vw - 80px);display:flex;flex-direction:column;align-items:center;gap:15px}
+.lightbox-figure img{display:block;width:auto;max-width:min(542px,calc(100vw - 80px));max-height:calc(100dvh - 155px);height:auto;object-fit:contain;box-shadow:0 10px 40px #0009;border:1px solid #ffffff4d}
+.lightbox figcaption{font:16px Spectral,Georgia,serif;color:#fff;letter-spacing:2px}
+.lightbox-close,.lightbox-nav{color:#fff;background:transparent;border:0;line-height:1;cursor:pointer}
+.lightbox-close{position:absolute;top:21px;right:23px;font-size:48px;padding:5px 15px}
+.lightbox-nav{font-size:55px;padding:15px 4px}
+.toast{position:fixed;z-index:1001;bottom:max(30px,env(safe-area-inset-bottom));left:50%;transform:translate(-50%,20px);background:#252b24;color:white;white-space:nowrap;border-radius:9px;padding:13px 23px;font:600 14px/1.4 Arial,sans-serif;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:721px){#invitation{width:480px;max-width:480px;box-shadow:0 15px 60px #000a}}
+@media(max-width:480px){.lightbox-nav{font-size:40px;padding:8px 2px}.lightbox-figure{max-width:calc(100vw - 55px)}.lightbox-figure img{max-width:calc(100vw - 65px)}.lightbox{gap:0;padding-inline:7px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.reveal-left{transition:none;transform:none;opacity:1}.gallery-progress>div,.account-panel,.account-arrow,.lightbox{transition:none}}
+
+/* 2026-10-10: mobile rendering alignment against 800 × 10000 design reference */
+.hero{height:2000px}
+.poem{height:950px}
+.poem-by{top:656px}
+.letter{height:710px}
+.letter-title{top:174px}
+.letter-message{top:297px}
+.letter-tree{bottom:-310px}
+.letter-torn{bottom:-240px}
+.couple-gallery{height:2340px}
+.couple-groom{top:462px}
+.couple-bride{top:743px}
+.gallery-sign{top:977px}
+.gallery-pattern{top:970px}
+.gallery-area{top:1560px}
+.location{height:1150px}
+.location-head{top:151px}
+.hotel-illustration{top:295px}
+.location-address{top:793px}
+.map-links{bottom:75px}
+.information{height:780px}
+.information>.section-header{top:141px}
+.information-items{top:320px}
+.information-item+.information-item{margin-top:76px}
+.accounts{padding-top:0}
+
+/* Reference-level refinements after side-by-side browser comparison */
+.hero-flower-right{width:340px;left:661px;top:946px;rotate:-90deg}
+.hero-flower-bottom{width:365px;left:570px;top:1560px}
+.letter{z-index:5}
+.letter-title{font-size:67px}
+.letter-message{font-size:25px;line-height:1.39}
+.letter-tree{width:555px;left:-96px;bottom:-354px}
+.couple-gallery{z-index:2;background:#111 url('assets/03_bgblk_tile.jpg') repeat-y center top / 800px auto}
+.gallery-pattern{top:1020px;transform:scaleX(-1);z-index:1}
+.couple-groom{top:492px}
+.couple-bride{top:773px}
+.gallery-sign{top:1037px;left:235px}
+.calendar-lace{width:320px;height:332px;right:-18px;top:-13px;object-fit:contain;content:url('assets/05_LACE_top.png');transform:scaleX(-1)}
+.calendar-leaf-right{width:390px;right:-130px;bottom:-140px}
+.location{background:#203b2b url('assets/06_bk.png') no-repeat center top / 800px 1150px}
+.location-head p{text-transform:uppercase}
+.map-links{bottom:95px}
+.calendar-leaf-right{right:-25px;bottom:-70px}
+.location-head{top:133px}
+.hotel-illustration{width:720px;left:40px}
+.location-address{top:775px}
+.map-links{left:109px;right:109px}
+
+
+/* 2026-10-10 revision using exact uploaded TTF fonts and final mobile design reference */
+.hero{height:1952px}
+.hero-top{height:872px;background-position:center top;background-size:800px auto}
+.hero-invited{width:410px;left:46px;top:177px}
+.portrait{left:190px;top:598px;width:383px;height:542px;padding:8px;box-shadow:10px 13px 16px rgba(0,0,0,.42),0 1px 2px rgba(0,0,0,.35)}
+.hero-flower-right{width:260px;left:642px;top:915px;rotate:-90deg}
+.hero-flower-left{width:348px;left:-82px;top:1368px}
+.hero-flower-bottom{width:340px;left:570px;top:1543px;rotate:-43deg}
+.hero-names{top:1247px}
+.hero-names p{font-size:44px;line-height:1.2;letter-spacing:-1px}
+.hero-names .infinity{font-size:37px;letter-spacing:-3px;margin:0 10px;vertical-align:0}
+.hero-names .hero-subtitle{font-size:43px}
+.hero-details{top:1458px;left:168px;width:464px;text-align:center;font-size:26px;line-height:1.6;letter-spacing:-1.2px}
+.hero-detail{justify-content:center;gap:10px}
+.hero-detail img{width:24px;height:24px}
+.poem{height:982px;background:#20271f url('assets/01_bg.png') no-repeat center -150px / 800px 1450px}
+.poem-text{top:154px;left:32px;width:735px;font-size:31px;line-height:1.36;letter-spacing:-4px}
+.poem-by{top:770px;left:0;width:100%;font-size:18px;letter-spacing:-1px}
+.pearl-flower{display:block;position:absolute;width:165px;right:-24px;top:487px;opacity:.9;z-index:3}
+.letter{height:775px;overflow:visible;background-position:center top}
+.letter-title{left:42px;top:114px;font-size:65px;letter-spacing:-2.5px}
+.letter-message{top:250px;left:43px;font-size:18px;line-height:1.64;letter-spacing:-.2px}
+.letter-pearl{display:block;width:264px;left:571px;top:-8px;clip-path:inset(0 0 0 0);opacity:.9;z-index:6}
+.letter-tree{width:360px;left:-56px;bottom:-42px;z-index:4}
+.letter-torn{bottom:-114px;height:264px;background:url('assets/03_bgblk.png') no-repeat center top / 800px auto}
+.couple-gallery{height:2210px;background:#101010 url('assets/03_bgblk_tile.jpg') repeat-y center top / 800px auto}
+.couple{z-index:2}
+.couple-groom{top:470px}.couple-bride{top:732px}
+.couple>img{width:68px;height:68px;margin-bottom:-6px}
+.couple-parent{font-size:22px;line-height:1.4;letter-spacing:-1px}
+.couple-name{font-size:33px;line-height:1.4;letter-spacing:-1px}
+.gallery-pattern{top:1435px;opacity:.17;transform:none}
+.gallery-sign{top:1050px;left:290px;width:220px;height:449px}
+.gallery-sign h2{top:127px;font-size:30px;letter-spacing:0;color:#e6e6e6}
+.gallery-area{top:1510px}
+.gallery-helper,.gallery-bottom{display:none}
+.gallery-track{padding:12px 215px 28px;gap:40px}
+.gallery-photo{width:370px;flex-basis:370px;height:525px}
+.calendar{height:828px}
+.calendar-lace{width:168px;height:196px;right:-5px;top:0;object-fit:cover;object-position:top;content:url('assets/05_LACE_top.png');transform:scaleX(-1)}
+.calendar-leaf-left{width:148px;left:-14px;top:159px;transform:rotate(-12deg)}
+.calendar-leaf-right{width:162px;right:-8px;bottom:33px;transform:rotate(12deg)}
+.calendar-month{left:43px;top:51px;font:normal 133px/1 Josun,serif;letter-spacing:-4px;text-shadow:7px -7px 10px rgba(0,0,0,.40)}
+.calendar-month-label{right:42px;top:164px;font:9.9pt/1 Josun,serif;letter-spacing:-2px}
+.calendar-grid-wrap{top:248px;left:70px;width:660px}
+.calendar-days{font-family:Josun,serif;font-size:15px;letter-spacing:-1px}
+.calendar-dates{margin-top:20px;grid-auto-rows:51px;font-size:18px}
+.calendar-day{width:48px;height:48px}
+.calendar-day.sunday{color:#d94925}.calendar-day.wedding-date::after{background-size:54px 54px}
+.location{height:1106px;background:#203b2b url('assets/06_bk.png') no-repeat center top / 800px 1106px}
+.location-head{top:146px}.location-head h2{font-size:43px}.location-head p{font-size:24px}
+.hotel-illustration{width:560px;height:auto;left:120px;top:328px}
+.location-address{top:781px;font-size:24px;line-height:1.55}
+.location-address p:nth-child(2){font-size:22px}
+.location-address .hall-name{display:none}
+.map-links{left:118px;right:118px;bottom:82px;gap:18px}.map-link{height:40px;font-size:12px;gap:7px;border-radius:8px}.map-link span{font-size:17px}.map-link .map-kakao{width:15px;height:11px}.map-link .map-kakao::after{width:5px;height:5px;left:2px;bottom:-2px}
+.information{height:880px;background-position:center top}
+.information>.section-header{top:155px}.section-header h2{font-size:53px;letter-spacing:-1px}.section-header p{font-size:24px}
+.information-items{top:344px;left:196px;width:408px;text-align:left;font-size:18px;line-height:1.55;letter-spacing:-.3px;font-weight:500}
+.information-item h3{font-size:22px;margin:0 0 17px}
+.information-item+.information-item{margin-top:68px}
+.accounts{padding:110px 0 170px;min-height:780px}
+.accounts>.section-header{margin-bottom:66px}
+.account-box{width:610px;padding:24px 0 0;background:transparent}
+.account-group{margin:0 48px;border-color:#8c8a81}
+.account-toggle{padding:24px 0;font-size:22px}
+.account-panel-inner{padding:0}.account-toggle[aria-expanded=true]+.account-panel .account-panel-inner{padding-bottom:20px}
+.account-entry{min-height:104px;padding:20px 20px;margin-bottom:16px;background:#fdfcf7}
+.account-entry p{font-size:18px;margin:0 0 6px}
+.share{height:210px}.share-buttons a{font:18px/1 GothamNarrow, 'Arial Narrow', Arial, sans-serif;letter-spacing:1px}.share-buttons img{width:60px;height:60px}
+.footer{height:280px}
+
+.hero-names,.hero-details,.poem-text,.poem-by,.letter-title,.letter-message,.couple,.calendar-month,.calendar-month-label,.calendar-grid-wrap,.location-head,.location-address,.section-header{font-synthesis:none}
+
+
+/* 2026-10-10 final.png requested adjustments */
+.hero{height:1965px}
+.hero-flower-left{width:410px;left:-112px;top:1345px;transform:rotate(-2deg)}
+.hero-flower-bottom{width:370px;left:602px;top:1527px;transform:rotate(-48deg)}
+.hero-flower-right{width:272px;left:644px;top:915px;transform:rotate(-89deg)}
+.hero-names p{font-weight:700}
+.hero-names .hero-subtitle{font-size:29.5px;font-weight:700;margin-top:6px}
+.hero-details{top:1452px}
+
+.poem{height:1035px;background:#20271f url('assets/01_bg.png') no-repeat center -152px / 800px 1470px}
+.poem-text{top:150px;font-size:49px;line-height:1.22;letter-spacing:-3px}
+.poem-by{top:855px;font-size:18px}
+.pearl-flower{width:245px;right:-38px;top:814px;opacity:1}
+
+.letter{height:815px;overflow:visible;z-index:4}
+.letter-title{left:167px;top:96px;font-size:93px;line-height:1;font-weight:700;letter-spacing:-2px}
+.letter-message{top:247px;left:92px;font-size:40px;line-height:1.38;letter-spacing:-.5px;white-space:normal;width:540px}
+.letter-tree{width:610px;left:-92px;top:-230px;bottom:auto;z-index:1;opacity:.98}
+.letter-pearl{width:240px;left:598px;top:-22px;opacity:.85}
+.letter-torn{bottom:-82px;height:240px;background:url('assets/03_bgblk.png') no-repeat center top/800px auto}
+
+.couple-gallery{height:2250px}
+.couple-groom{top:456px}.couple-bride{top:735px}
+.couple>img{width:68px;height:68px;margin-bottom:3px}
+.couple-parent,.couple-name{font-weight:700}
+.couple-parent{font-size:23px}
+.couple-name{font-size:34px}
+.gallery-sign{top:1046px;left:290px;width:220px;height:449px}
+.gallery-sign h2{top:126px;font-size:30.3px;line-height:1;display:flex;align-items:center;justify-content:center;height:38px}
+.gallery-area{top:1518px}
+
+.calendar{height:900px;overflow:visible;z-index:1}
+.calendar::before{content:'';position:absolute;left:0;top:0;width:800px;height:118px;background:linear-gradient(to bottom, rgba(0,0,0,.22), rgba(0,0,0,0) 70%);opacity:.25;pointer-events:none}
+.calendar-month{top:60px}
+
+.location{height:1118px;margin-top:-42px;padding-top:42px;z-index:3;background:#203b2b url('assets/06_bk.png') no-repeat center top / 800px 1118px}
+.hotel-illustration{width:749px;height:418px;left:26px;top:330px;object-fit:contain}
+.location-address{top:785px}
+.map-links{top:auto;bottom:76px}
+.location-address + .map-links{margin-top:80px}
+
+.information{height:842px;background:#fdfaf1 url('assets/00_background.jpg') repeat-y center top/100% auto}
+.information-top{top:-1px;height:132px;object-fit:fill}
+.information>.section-header{top:200px}
+.information-items{top:385px;left:120px;width:560px;text-align:center}
+.information-item h3{text-align:center}
+.information-item p{text-align:center}
+
+.share-buttons{gap:98px}
+.footer{height:515px}
+.footer img{object-fit:cover;object-position:center top}
+
+
+/* ===== final.png alignment patch ===== */
+.hero-names p, .hero-names .hero-subtitle, .letter-title, .couple-parent, .couple-name {font-synthesis:weight;}
+.hero{height:1968px}
+.hero-flower-right{width:270px;left:650px;top:922px;transform:rotate(-89deg)}
+.hero-flower-left{width:432px;left:-118px;top:1340px;transform:rotate(-1deg)}
+.hero-flower-bottom{width:372px;left:595px;top:1526px;transform:rotate(-48deg)}
+.hero-names{top:1250px}
+.hero-names p{font-size:44px;line-height:1.14;letter-spacing:-1px;font-weight:700}
+.hero-names .hero-subtitle{font-size:29.5px;font-weight:700;margin-top:10px}
+.hero-details{top:1456px}
+
+.poem{height:1044px;background:#20271f url('assets/01_bg.png') no-repeat center -150px / 800px 1470px}
+.poem-text{top:149px;left:33px;width:734px;font-size:49.3px;line-height:1.18;letter-spacing:-3px}
+.poem-by{top:861px;left:0;width:100%;text-align:center;font-size:18px}
+.pearl-flower{display:block;position:absolute;width:252px;right:-54px;top:896px;opacity:1;z-index:7}
+
+.letter{height:830px;overflow:visible}
+.letter-title{left:167px;top:96px;font-size:93px;line-height:1;color:#000;font-weight:700;letter-spacing:-2px}
+.letter-message{top:246px;left:92px;width:540px;font-size:40px;line-height:1.36;letter-spacing:-.4px;white-space:normal}
+.letter-tree{width:620px;left:-86px;top:-245px;bottom:auto;z-index:1;opacity:.98}
+.letter-pearl{width:252px;left:596px;top:-16px;clip-path:inset(0 0 0 0);z-index:6}
+.letter-torn{bottom:-95px;height:250px}
+
+.couple-gallery{height:2240px}
+.couple-groom{top:458px}
+.couple-bride{top:740px}
+.couple>img{width:68px;height:68px;margin-bottom:3px}
+.couple-parent{font-size:23px;line-height:1.45;font-weight:700}
+.couple-name{font-size:34px;line-height:1.45;font-weight:700}
+.gallery-sign{top:1044px;left:290px;width:220px;height:449px}
+.gallery-sign h2{top:124px;left:0;right:0;height:40px;display:flex;align-items:center;justify-content:center;font-size:30.3px;line-height:1;color:#e6e6e6;letter-spacing:0}
+.gallery-area{top:1515px}
+
+.calendar{height:890px;background:#667259;overflow:visible}
+.calendar-reference{position:absolute;left:0;top:0;width:800px;height:890px;object-fit:fill;z-index:3;pointer-events:none}
+.calendar-lace,.calendar-leaf,.calendar-month,.calendar-month-label,.calendar-grid-wrap{display:none !important}
+
+.location{height:1118px;margin-top:-44px;padding-top:44px;background:#203b2b url('assets/06_bk.png') no-repeat center top / 800px 1118px;z-index:6}
+.hotel-illustration{width:749px;height:418px;left:26px;top:330px;object-fit:contain}
+.location-address{top:788px}
+.map-links{left:109px;right:109px;bottom:71px;gap:18px}
+
+.information{height:840px;background:#fdfaf1 url('assets/00_background.jpg') repeat-y center top / 100% auto}
+.information-top{top:0;height:132px;object-fit:fill}
+.information>.section-header{top:200px}
+.information-items{top:388px;left:120px;width:560px;text-align:center;font-size:18px;line-height:1.58}
+.information-item,.information-item h3,.information-item p{text-align:center !important}
+.information-item h3{font-size:22px;margin-bottom:16px}
+
+.share-buttons{gap:98px}
+.footer{height:520px}
+.footer img{object-fit:cover;object-position:center top}
