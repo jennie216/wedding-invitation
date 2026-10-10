@@ -437,29 +437,46 @@ button{font:inherit;cursor:pointer}
 .js-reveal-ready .reveal.is-visible,.js-reveal-ready .reveal-left.is-visible{opacity:1;transform:translate3d(0,0,0)}
 @media(prefers-reduced-motion:reduce){.js-reveal-ready .reveal,.js-reveal-ready .reveal-left{opacity:1!important;transform:none!important;transition:none!important}}
 
-/* === Accumulated requests, October 10: latest overrides === */
-/* The poem credit is 35px below the poem text's bottom, in the 800px design canvas. */
-.poem-by{top:calc(149px + 36px * 1.14 * 11 + 35px);}
-/* Pearl decoration remains in front of all foreground sections. */
-.poem{z-index:20;overflow:visible}
-.pearl-flower{z-index:9999!important;position:absolute!important;pointer-events:none}
-.letter-title{top:110px!important;font-weight:900!important;-webkit-text-stroke:.65px currentColor}
-.location-head{top:166px!important}
-.location-head h2,.information .section-header h2,.accounts .section-header h2{
-  font-weight:900!important;-webkit-text-stroke:1px currentColor;
-}
-/* Match the existing divider style from the accounts area. */
-.information-divider{position:absolute;left:95px;right:95px;top:325px;height:1px;background:#8b8a83;opacity:.9}
-.information-items{top:428px!important}
-/* 08 section ends, then a 100px gap to the two-line account heading. */
+
+/* === OCT 10 consolidated revision: design canvas 800px === */
+@font-face{font-family:PretendardMedium;src:url("assets/fonts/Pretendard-Medium.ttf") format("truetype");font-weight:500;font-display:swap}
+.hero .portrait{width:441px;height:575px;left:calc((800px - 441px)/2);top:597px}
+.hero-names{z-index:20}
+.hero-names p,.hero-names .hero-subtitle{font-weight:800;-webkit-text-stroke:.45px currentColor}
+.hero-details{top:1550px!important;left:168px!important;z-index:100!important}
+.hero-details .hero-detail{font-family:PretendardMedium,sans-serif;font-weight:500}
+.hero-details .hero-detail img{position:relative;z-index:101}
+.hero-flower{z-index:9}
+.hero-flower-left{width:480px;left:-130px;top:1328px}
+.hero-flower-bottom{width:418px;left:560px;top:1514px}
+.hero-flower-right{width:290px;left:640px;top:905px}
+.hero{overflow:hidden}
+.hero-flower-left,.hero-flower-bottom{height:auto;max-height:none}
+/* A single supplied image replaces ALL letter section content. */
+.letter-image-only{height:2000px!important;background:none!important;overflow:hidden!important;z-index:4}
+.letter-composed{display:block;width:800px;height:2000px;object-fit:fill}
+.poem-by{top:810px}
+.pearl-flower{z-index:9999!important}
+/* 04bgf remains one continuous calendar-to-location background */
+.calendar-location-bg{background:#203b2b url("assets/04bgf.png") no-repeat center top / 800px 2000px!important}
+.calendar-location-bg>.section{background:transparent!important;background-image:none!important}
+.location-head{top:191px!important}
+.location-head h2{font-weight:900!important;-webkit-text-stroke:1px currentColor}
+.location-head p{font-family:Josefin,Georgia,serif!important;font-weight:300!important}
+.information>.section-header h2,.accounts>.section-header h2{font-weight:900!important;-webkit-text-stroke:1px currentColor}
 .information{height:850px!important}
+.information-items{top:388px!important}
+.information-divider{position:absolute;top:360px;left:130px;width:540px;border-top:1px solid #8b8a83}
+.information-divider-bottom{top:740px}
 .accounts{padding-top:100px!important;padding-bottom:0!important;min-height:0!important}
-.accounts>.section-header{margin-bottom:66px}
-.accounts .section-header h2{max-width:360px;margin:0 auto;line-height:1.25}
+.accounts>.section-header{margin-bottom:60px}
+.accounts .section-header h2{line-height:1.2}
 .account-box,.account-panel,.account-panel-inner,.account-entry{background:transparent!important}
-.account-box{padding-bottom:0!important}
-.account-entry{background-color:transparent!important}
-/* Flow-based sharing: at least 40px after an expanded bride accordion, with
-   reserved space equal to the bride panel's fully expanded content. */
-.share{height:240px!important;margin-top:40px!important;display:grid;place-items:start center;padding-top:0!important}
-.ending-unified{padding-bottom:180px}
+.account-entry{border-color:#a8a69c}
+.share{margin-top:40px!important;height:240px!important}
+.share-buttons{align-self:start}
+/* Mobile Safari/Chrome: transitions only on foreground nodes, not backgrounds. */
+.reveal,.reveal-left{opacity:1;transform:none;transition:none}
+.js-reveal-ready .reveal,.js-reveal-ready .reveal-left{opacity:0;transform:translate3d(0,55px,0);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+.js-reveal-ready .reveal.is-visible,.js-reveal-ready .reveal-left.is-visible{opacity:1;transform:translate3d(0,0,0)}
+@media(prefers-reduced-motion:reduce){.js-reveal-ready .reveal{opacity:1!important;transform:none!important;transition:none!important}}

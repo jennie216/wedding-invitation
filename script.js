@@ -24,55 +24,37 @@
   }
   document.fonts?.ready?.then(resizeInvitation);
 
-  // Mobile scroll reveal: downward-only animation, re-armed after leaving the viewport.
-  // Upward scrolling never toggles a reveal state. Backgrounds are not reveal targets.
+  // Replaying entrance animation, downward scrolling only.
+  // Background elements never receive .reveal.
   const reveals = [...document.querySelectorAll('.reveal')];
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const revealState = new WeakMap();
-  let scrollDirectionDown = true;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function updateReveals(initial = false) {
     const y = window.scrollY || window.pageYOffset || 0;
-    if (!initial && y < lastScroll - 1) {
-      scrollDirectionDown = false;
-      lastScroll = y;
-      return;
-    }
-    if (!initial && y <= lastScroll + 1) return;
-    scrollDirectionDown = true;
+    const movingDown = y > lastScroll + 1;
+    if (!initial && !movingDown) { lastScroll = y; return; }
     lastScroll = y;
-    const vh = window.innerHeight || document.documentElement.clientHeight;
-    reveals.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      const inView = rect.top < vh * .93 && rect.bottom > vh * .08;
-      const state = revealState.get(el) || {armed:true};
-      if (initial && rect.top < vh && rect.bottom > 0) {
-        el.classList.add('is-visible');
-        state.armed = false;
-      } else if (rect.top >= vh * 1.04 || rect.bottom <= -24) {
-        // Offscreen elements can play again on the next downward approach.
+    const vh = window.innerHeight;
+    for (const el of reveals) {
+      const r = el.getBoundingClientRect();
+      if (initial) {
+        el.classList.toggle('is-visible',r.top < vh && r.bottom > 0);
+      } else if (r.bottom < 0 || r.top > vh + 25) {
         el.classList.remove('is-visible');
-        state.armed = true;
-      } else if (inView && state.armed) {
+      } else if (r.top < vh * .94 && r.bottom > 0) {
         el.classList.add('is-visible');
-        state.armed = false;
       }
-      revealState.set(el,state);
-    });
+    }
   }
   if (!reducedMotion) {
-    // Mark visible content first so the page never flashes invisible on load.
     updateReveals(true);
     document.documentElement.classList.add('js-reveal-ready');
     window.addEventListener('scroll', () => {
       if (scheduled) return;
       scheduled = true;
-      requestAnimationFrame(() => {
-        updateReveals(false);
-        scheduled = false;
-      });
+      requestAnimationFrame(() => { updateReveals(); scheduled = false; });
     }, {passive:true});
   } else {
-    reveals.forEach(el => el.classList.add('is-visible'));
+    reveals.forEach(el=>el.classList.add('is-visible'));
   }
 
   // Files are presented in numerical, not lexical, filename ascending order.
