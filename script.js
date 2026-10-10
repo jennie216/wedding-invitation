@@ -15,7 +15,7 @@
       measuredHeight = target;
       wrapper.style.height = `${target}px`;
     }
-    updateReveals(true);
+    updateReveals(false);
   }
   window.addEventListener('resize', resizeInvitation, {passive: true});
   if ('ResizeObserver' in window) {
@@ -24,50 +24,55 @@
   }
   document.fonts?.ready?.then(resizeInvitation);
 
-  // Reveal when scrolling down. Scrolling up leaves all current animation states untouched.
+  // Mobile scroll reveal: downward-only animation, re-armed after leaving the viewport.
+  // Upward scrolling never toggles a reveal state. Backgrounds are not reveal targets.
   const reveals = [...document.querySelectorAll('.reveal')];
-  function updateReveals(force = false) {
-    const y = window.scrollY;
-    const down = y >= lastScroll - 1;
-    if (down || force) {
-      const height = window.innerHeight;
-      reveals.forEach(el => {
-        const r = el.getBoundingClientRect();
-        if (r.top > height + 80) {
-          el.classList.remove('is-visible');
-        } else if (r.top < height * .96 && r.bottom > 0) {
-          el.classList.add('is-visible');
-        }
-      });
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealState = new WeakMap();
+  let scrollDirectionDown = true;
+  function updateReveals(initial = false) {
+    const y = window.scrollY || window.pageYOffset || 0;
+    if (!initial && y < lastScroll - 1) {
+      scrollDirectionDown = false;
+      lastScroll = y;
+      return;
     }
+    if (!initial && y <= lastScroll + 1) return;
+    scrollDirectionDown = true;
     lastScroll = y;
-  }
-  window.addEventListener('scroll', () => {
-    if (scheduled) return;
-    scheduled = true;
-    requestAnimationFrame(() => {
-      updateReveals();
-      scheduled = false;
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    reveals.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const inView = rect.top < vh * .93 && rect.bottom > vh * .08;
+      const state = revealState.get(el) || {armed:true};
+      if (initial && rect.top < vh && rect.bottom > 0) {
+        el.classList.add('is-visible');
+        state.armed = false;
+      } else if (rect.top >= vh * 1.04 || rect.bottom <= -24) {
+        // Offscreen elements can play again on the next downward approach.
+        el.classList.remove('is-visible');
+        state.armed = true;
+      } else if (inView && state.armed) {
+        el.classList.add('is-visible');
+        state.armed = false;
+      }
+      revealState.set(el,state);
     });
-  }, {passive:true});
-
-  // Fully rendered, correct weekday positions for December 2026 (1st Tuesday, 5th Saturday).
-  const calendarDates = document.getElementById('calendar-dates');
-  for (let blank = 0; blank < 2; blank++) {
-    const span = document.createElement('span');
-    span.setAttribute('aria-hidden','true');
-    calendarDates.append(span);
   }
-  for (let day = 1; day <= 31; day++) {
-    const span = document.createElement('span');
-    span.textContent = day;
-    span.className = 'calendar-day';
-    if (new Date(2026,11,day).getDay() === 0) span.classList.add('sunday');
-    if (day === 5) {
-      span.classList.add('wedding-date');
-      span.setAttribute('aria-label','12월 5일 토요일 결혼식');
-    }
-    calendarDates.append(span);
+  if (!reducedMotion) {
+    // Mark visible content first so the page never flashes invisible on load.
+    updateReveals(true);
+    document.documentElement.classList.add('js-reveal-ready');
+    window.addEventListener('scroll', () => {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => {
+        updateReveals(false);
+        scheduled = false;
+      });
+    }, {passive:true});
+  } else {
+    reveals.forEach(el => el.classList.add('is-visible'));
   }
 
   // Files are presented in numerical, not lexical, filename ascending order.

@@ -424,3 +424,15 @@ button{font:inherit;cursor:pointer}
 /* Fixed 542px maximum, no additional image zoom */
 .lightbox-figure img{width:auto;max-width:min(542px,calc(100vw - 65px));touch-action:pan-y;user-select:none;-webkit-user-select:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+
+/* 2026-10-10: one continuous, non-animated background from calendar through location */
+.calendar-location-bg{position:relative;width:800px;height:2000px;background:#203b2b url('assets/04bgf.png') no-repeat center top / 800px 2000px;overflow:hidden}
+.calendar-location-bg>.section{background:none!important}
+.calendar-location-bg .calendar{height:850px}
+.calendar-location-bg .location{height:1150px;overflow:visible}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+/* Scroll-in elements: only foreground content animates, always upward */
+.reveal,.reveal-left{opacity:1;transform:none;transition:none;will-change:auto}
+.js-reveal-ready .reveal,.js-reveal-ready .reveal-left{opacity:0;transform:translate3d(0,52px,0);transition:opacity .72s ease,transform .72s cubic-bezier(.2,.7,.2,1);will-change:transform,opacity}
+.js-reveal-ready .reveal.is-visible,.js-reveal-ready .reveal-left.is-visible{opacity:1;transform:translate3d(0,0,0)}
+@media(prefers-reduced-motion:reduce){.js-reveal-ready .reveal,.js-reveal-ready .reveal-left{opacity:1!important;transform:none!important;transition:none!important}}
