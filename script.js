@@ -6,19 +6,9 @@
   let measuredHeight = 0;
   let lastScroll = window.scrollY;
   let scheduled = false;
-  const hero = document.querySelector('.hero');
 
   function resizeInvitation() {
     const scale = wrapper.clientWidth / BASE_WIDTH;
-    // Fit the complete 800x2000 opening composition into the visible phone screen.
-    // Retain the original 2000px artboard on wide desktop previews.
-    const screenHeight = window.visualViewport?.height || window.innerHeight;
-    const availableDesignHeight = screenHeight / scale;
-    const fittedHeight = window.innerWidth <= 720
-      ? Math.min(2000, Math.max(1550, availableDesignHeight))
-      : 2000;
-    hero.style.setProperty('--hero-screen-height', `${fittedHeight}px`);
-    hero.style.setProperty('--hero-y', String(fittedHeight / 2000));
     canvas.style.transform = `scale(${scale})`;
     const target = Math.ceil(canvas.scrollHeight * scale);
     if (target !== measuredHeight) {
@@ -34,26 +24,32 @@
   }
   document.fonts?.ready?.then(resizeInvitation);
 
-  // Observe each element in the actual visual viewport; works with the scaled canvas.
+  // Reveal when scrolling down. Scrolling up leaves all current animation states untouched.
   const reveals = [...document.querySelectorAll('.reveal')];
-  const observer = ('IntersectionObserver' in window) ? new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {root:null, rootMargin:'0px 0px -4% 0px', threshold:0.01}) : null;
-  if(observer) reveals.forEach(el => observer.observe(el));
-  else reveals.forEach(el => el.classList.add('is-visible'));
-  function updateReveals(){
-    reveals.forEach(el=>{
-      if(el.classList.contains('is-visible'))return;
-      const rect=el.getBoundingClientRect();
-      if(rect.top < window.innerHeight*.96 && rect.bottom>0)el.classList.add('is-visible');
-    });
+  function updateReveals(force = false) {
+    const y = window.scrollY;
+    const down = y >= lastScroll - 1;
+    if (down || force) {
+      const height = window.innerHeight;
+      reveals.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top > height + 80) {
+          el.classList.remove('is-visible');
+        } else if (r.top < height * .96 && r.bottom > 0) {
+          el.classList.add('is-visible');
+        }
+      });
+    }
+    lastScroll = y;
   }
-  window.addEventListener('scroll',()=>requestAnimationFrame(updateReveals),{passive:true});
+  window.addEventListener('scroll', () => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => {
+      updateReveals();
+      scheduled = false;
+    });
+  }, {passive:true});
 
   // Fully rendered, correct weekday positions for December 2026 (1st Tuesday, 5th Saturday).
   const calendarDates = document.getElementById('calendar-dates');

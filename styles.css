@@ -381,50 +381,46 @@ button{font:inherit;cursor:pointer}
 .footer{height:520px}
 .footer img{object-fit:cover;object-position:center top}
 
-/* QA 2026-10-10: 800 x 2000 design canvas, first fold fitted to mobile viewport. */
-.hero{height:var(--hero-screen-height,2000px)}
-.hero-top{height:calc(872px * var(--hero-y,1))}
-.hero-invited{width:555px;left:35px;top:calc(160px * var(--hero-y,1));}
-.portrait{top:calc(598px * var(--hero-y,1));}
-.hero-flower-right{top:calc(922px * var(--hero-y,1));}
-.hero-flower-left{top:calc(1340px * var(--hero-y,1));}
-.hero-flower-bottom{top:calc(1526px * var(--hero-y,1));}
-.hero-names{top:calc(1250px * var(--hero-y,1));}
-.hero-details{top:calc(1456px * var(--hero-y,1));}
-
-/* ===== Mobile QA / continuous sections / 2026-10-10 ===== */
-/* Keep the entire layout based on the 800px artboard; JS scales it to viewport width. */
-.poem-text{font-size:36px;line-height:1.35;letter-spacing:-.7px;top:178px;white-space:normal}
-.poem-by{top:833px}
-.letter{height:1000px;overflow:hidden;background:#fdfaf1 url('assets/00_background.jpg') repeat-y center top / 800px auto}
-.letter-title{left:80px;top:108px;width:calc(100% - 100px);font-family:Josun,serif;font-size:111px;font-weight:400;letter-spacing:-3px;text-transform:none;white-space:nowrap;z-index:5}
-.letter-message{left:80px;top:328px;width:650px;font-family:Chosun,serif;font-size:28px;line-height:1.9;letter-spacing:-.4px;white-space:normal;z-index:5}
-.letter-tree{top:auto;bottom:-10px;left:-60px;width:565px;z-index:4;opacity:1}
-.letter-pearl{display:none}
-/* Transition is a small overlapping strip of the same image as section 04. */
-.letter-torn{left:0;bottom:-4px;width:800px;height:200px;background:url('assets/03_bgblk.png') no-repeat center top / 800px auto;z-index:6}
-/* One continuous cover image: do not tile/restart at the bride information. */
-.couple-gallery{height:2240px;background:#111 url('assets/03_bgblk.png') no-repeat center top / 800px 2240px}
-.gallery-pattern{top:1420px;left:-80px;width:1040px;height:auto;opacity:.17;z-index:1}
-.gallery-sign{top:1050px;left:290px;width:220px;height:449px}
-.gallery-sign img{width:220px;height:449px}
-.gallery-sign h2{top:124px;font-family:Spectral,Georgia,serif;font-size:25.33px;font-weight:400;color:#e6e6e6;letter-spacing:0}
-/* Calendar and location have no blank section spacer. */
-.calendar-location-continuous{width:800px;position:relative;background:#667259}
-.calendar{height:890px;overflow:hidden}
-.location{margin-top:-45px;z-index:3}
-.location:before{content:'';position:absolute;top:0;left:0;right:0;height:70px;background:#667259;z-index:-1}
-/* Information, accounts and sharing form a single uninterrupted paper. */
-.paper-continuous{width:800px;background:#fdfaf1 url('assets/00_background.jpg') repeat-y center top / 800px auto;position:relative}
-.paper-continuous .information,.paper-continuous .accounts,.paper-continuous .share{background:transparent!important}
-.information{height:860px}
+/* 2026-10-10 accumulated design revisions – 800px reference canvas */
+/* Opening: keep portrait separate from names, matching the reference */
+.hero-names{top:1300px;z-index:12}
+.hero-details{top:1550px}
+.hero-invited{width:760px;left:-45px;top:165px}
+/* Poem: 27pt = 36px at reference size */
+.poem-text{font-size:36px;line-height:1.14}
+/* Letter typography, 65pt / 20pt, 110px title-to-body spacing */
+.letter{overflow:visible;z-index:7}
+.letter-title{left:80px;top:100px;font-family:Josun,serif;font-size:86.6667px;font-weight:700;line-height:1.4;letter-spacing:0;text-transform:none;white-space:nowrap}
+.letter-message{left:80px;top:331px;font-family:Chosun,serif;font-size:26.6667px;font-weight:700;line-height:1.25;letter-spacing:0;white-space:nowrap}
+/* Foreground floral decorations must cross section boundaries */
+.letter-tree{z-index:45;width:580px;left:-95px;bottom:-260px;clip-path:none}
+.letter-pearl{z-index:46;clip-path:none;top:-310px}
+.letter-torn{z-index:2;background-size:800px auto}
+/* Continuous 04bg across bride/groom and gallery, no separate pattern */
+.couple-gallery{background:#151515 url('assets/04bg.png') no-repeat center top / 100% 100%;overflow:visible;z-index:2}
+.gallery-pattern{display:none}
+.gallery-sign{width:220px;height:366px;left:290px;top:977px;z-index:8}
+.gallery-sign img{width:100%;height:100%;object-fit:fill}
+.gallery-sign h2{display:none}
+.gallery-photo{flex-basis:370px;width:370px}
+/* Calendar/location uninterrupted visual transition */
+.location{height:1210px;background:#203b2b url('assets/06_bk.png') no-repeat center top / 800px 1600px;overflow:hidden}
+.location-head h2{font-size:53.3333px;font-weight:700}
+.location-head p{font-size:20.1333px;font-weight:700;line-height:1.2;text-transform:uppercase}
+.location-address{top:810px;font-size:18.6667px;line-height:1.2;letter-spacing:-1px}
+.location-address p:nth-child(2){font-size:14.6667px;line-height:1.2;letter-spacing:-1px;margin-top:16px;color:#99ad84}
+.hotel-address-link{color:inherit;text-decoration:underline;text-decoration-color:currentColor;text-underline-offset:3px}
+.location-address .hall-name{font-size:17px}
+.map-links{bottom:125px;gap:28px}
+/* A single paper sheet from information through sharing and bottom flowers */
+.ending-unified{position:relative;width:800px;background:#fdfaf1 url('assets/lastbk.png') no-repeat center top / 100% 100%;padding-bottom:180px;isolation:isolate}
+.ending-unified>.section{background:transparent!important}
 .information-top{display:none}
-.information>.section-header{top:150px}
-.information-items{top:355px}
-.accounts{padding-top:130px;min-height:820px}
-.accounts>.section-header{margin-bottom:55px}
-.share{border:0!important;box-shadow:none!important}
-/* Preserve slide-up animation even on transformed scaled artboard. */
-.reveal{opacity:0;transform:translate3d(0,50px,0);transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1)}
-.reveal.is-visible{opacity:1;transform:translate3d(0,0,0)}
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;transition:none!important}}
+.information{height:850px}
+.information-items{top:320px}
+.accounts{padding-top:0;min-height:720px}
+.share{height:270px;background:transparent}
+.footer{display:none}
+/* Fixed 542px maximum, no additional image zoom */
+.lightbox-figure img{width:auto;max-width:min(542px,calc(100vw - 65px));touch-action:pan-y;user-select:none;-webkit-user-select:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
