@@ -480,3 +480,37 @@ button{font:inherit;cursor:pointer}
 .js-reveal-ready .reveal,.js-reveal-ready .reveal-left{opacity:0;transform:translate3d(0,55px,0);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
 .js-reveal-ready .reveal.is-visible,.js-reveal-ready .reveal-left.is-visible{opacity:1;transform:translate3d(0,0,0)}
 @media(prefers-reduced-motion:reduce){.js-reveal-ready .reveal{opacity:1!important;transform:none!important;transition:none!important}}
+
+
+/* Correction: 03hello.png includes the poem. The separate poem section is removed. */
+/* Floral stems should reach the hero bottom; keep date and venue fixed above flowers. */
+.hero-flower-left{
+  width:530px!important;
+  left:-138px!important;
+  top:auto!important;
+  bottom:-8px!important;
+  z-index:9!important;
+}
+.hero-flower-bottom{
+  width:475px!important;
+  left:510px!important;
+  top:auto!important;
+  bottom:-16px!important;
+  rotate:-43deg;
+  z-index:9!important;
+}
+.hero-flower-right{z-index:9!important}
+.hero-details{z-index:120!important}
+.hero-detail,.hero-detail img,.hero-detail span{position:relative;z-index:121}
+.hero-names{z-index:30!important}
+
+/* Latest accumulated revisions: 03hellof, directions +60px, information centered. */
+/* Move foreground elements, not the shared 04bgf background. */
+.calendar-location-bg .location-head{top:251px!important}
+.calendar-location-bg .hotel-illustration{top:360px!important}
+.calendar-location-bg .location-address{top:870px!important}
+.calendar-location-bg .map-links{bottom:65px!important}
+/* Center the two information items as one group between the two rules. */
+.information .information-divider{top:360px!important}
+.information .information-divider-bottom{top:740px!important}
+.information .information-items{top:440px!important}
