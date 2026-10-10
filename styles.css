@@ -547,3 +547,31 @@ button{font:inherit;cursor:pointer}
 .letter-greeting-cropped{height:970px!important;overflow:hidden!important;background:#f5f0e6!important}
 .letter-greeting-cropped .letter-composed{display:block;position:absolute!important;top:-1030px!important;left:0!important;width:800px!important;height:2000px!important;max-width:none!important;object-fit:fill!important}
 @media(prefers-reduced-motion:reduce){.poem-marquee-track{animation:none!important;transform:none!important}}
+
+/* Mobile marquee reliability patch: always animate independently of scroll JS. */
+.poem-marquee .poem-marquee-track{
+  -webkit-animation: poem-flow-left-mobile 17s linear infinite !important;
+  animation: poem-flow-left-mobile 17s linear infinite !important;
+  -webkit-animation-play-state: running !important;
+  animation-play-state: running !important;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translate3d(0,0,0);
+  will-change: transform;
+}
+@-webkit-keyframes poem-flow-left-mobile {
+  0% { -webkit-transform: translate3d(0,0,0); transform:translate3d(0,0,0); }
+  100% { -webkit-transform: translate3d(-50%,0,0); transform:translate3d(-50%,0,0); }
+}
+@keyframes poem-flow-left-mobile {
+  0% { transform: translate3d(0,0,0); }
+  100% { transform: translate3d(-50%,0,0); }
+}
+/* Honor OS accessibility preferences without hiding the text. */
+@media (prefers-reduced-motion: reduce) {
+  .poem-marquee .poem-marquee-track{
+    -webkit-animation: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
