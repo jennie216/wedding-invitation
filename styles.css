@@ -380,3 +380,14 @@ button{font:inherit;cursor:pointer}
 .share-buttons{gap:98px}
 .footer{height:520px}
 .footer img{object-fit:cover;object-position:center top}
+
+/* QA 2026-10-10: 800 x 2000 design canvas, first fold fitted to mobile viewport. */
+.hero{height:var(--hero-screen-height,2000px)}
+.hero-top{height:calc(872px * var(--hero-y,1))}
+.hero-invited{width:555px;left:35px;top:calc(160px * var(--hero-y,1));}
+.portrait{top:calc(598px * var(--hero-y,1));}
+.hero-flower-right{top:calc(922px * var(--hero-y,1));}
+.hero-flower-left{top:calc(1340px * var(--hero-y,1));}
+.hero-flower-bottom{top:calc(1526px * var(--hero-y,1));}
+.hero-names{top:calc(1250px * var(--hero-y,1));}
+.hero-details{top:calc(1456px * var(--hero-y,1));}

@@ -6,9 +6,19 @@
   let measuredHeight = 0;
   let lastScroll = window.scrollY;
   let scheduled = false;
+  const hero = document.querySelector('.hero');
 
   function resizeInvitation() {
     const scale = wrapper.clientWidth / BASE_WIDTH;
+    // Fit the complete 800x2000 opening composition into the visible phone screen.
+    // Retain the original 2000px artboard on wide desktop previews.
+    const screenHeight = window.visualViewport?.height || window.innerHeight;
+    const availableDesignHeight = screenHeight / scale;
+    const fittedHeight = window.innerWidth <= 720
+      ? Math.min(2000, Math.max(1550, availableDesignHeight))
+      : 2000;
+    hero.style.setProperty('--hero-screen-height', `${fittedHeight}px`);
+    hero.style.setProperty('--hero-y', String(fittedHeight / 2000));
     canvas.style.transform = `scale(${scale})`;
     const target = Math.ceil(canvas.scrollHeight * scale);
     if (target !== measuredHeight) {
