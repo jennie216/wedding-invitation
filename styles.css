@@ -548,3 +548,24 @@ button{font:inherit;cursor:pointer}
 .letter-greeting-cropped{height:970px!important;overflow:hidden!important;background:#f5f0e6!important}
 .letter-greeting-cropped .letter-composed{display:block;position:absolute!important;top:-1030px!important;left:0!important;width:800px!important;height:2000px!important;max-width:none!important;object-fit:fill!important}
 .poem-motion-toggle{display:none!important}
+
+/* v6: each line loops seamlessly; duplicate units have identical natural widths. */
+.poem-marquee-viewport{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:stretch!important;gap:14px!important}
+.poem-endless-row{width:100%;overflow:hidden;white-space:nowrap;flex:0 0 auto;font-family:Josun,serif;font-weight:700;font-size:48px;line-height:1.32;letter-spacing:-1.2px;text-shadow:0 1px 1px rgba(0,0,0,.25)}
+.poem-endless-track{display:flex;width:max-content;max-width:none;animation:poem-endless-v6 54s linear infinite!important;-webkit-animation:poem-endless-v6 54s linear infinite!important;animation-play-state:running!important;will-change:transform}
+.poem-endless-unit{display:block;flex:0 0 auto;white-space:pre}
+@keyframes poem-endless-v6{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@-webkit-keyframes poem-endless-v6{from{-webkit-transform:translate3d(0,0,0)}to{-webkit-transform:translate3d(-50%,0,0)}}
+
+
+/* v7: keep the green 01_bg background; remove the duplicated poem from 03helloff by existing greeting crop. */
+.poem-marquee { isolation:isolate; }
+.poem-marquee-viewport { z-index:1; }
+.poem-cho-overlay {
+  position:absolute; z-index:100; pointer-events:none;
+  width:410px; height:auto; left:50%; top:50%;
+  transform:translate(-50%,-50%); object-fit:contain;
+}
+.poem-marquee-credit {z-index:101; display:flex; flex-direction:column; align-items:center; gap:10px; line-height:1.35;}
+.thanks-video-section {height:1200px; overflow:hidden; background:#131313; position:relative;}
+.thanks-video {display:block; width:800px; height:1200px; object-fit:cover; background:#131313;}
