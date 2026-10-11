@@ -603,3 +603,7 @@ button{font:inherit;cursor:pointer}
 .calendar-location-bg .map-links{top:auto!important;bottom:205px!important}
 /* Restore v12 original TREETREE.png reference. Enlarge and lower by 40 design pixels. */
 .couple-gallery .gallery-tree-overlay{right:-68px!important;bottom:-28px!important;width:610px!important;height:auto!important;max-height:none!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:95!important;pointer-events:none!important}
+
+/* v15: Anchor TREETREE to the gallery section, 60 design px above its bottom edge. */
+.couple-gallery{position:relative!important;}
+.couple-gallery > .gallery-tree-overlay{position:absolute!important;right:0!important;bottom:60px!important;top:auto!important;left:auto!important;width:610px!important;height:auto!important;max-height:none!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:95!important;pointer-events:none!important;}
