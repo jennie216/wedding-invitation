@@ -14,7 +14,7 @@
   <link rel="preload" as="image" href="assets/00_BG_HERO.jpg">
   <link rel="preload" as="image" href="assets/00_HERO_main.jpg">
   <link rel="stylesheet" href="styles.css?v=20261011-accum-v11">
-  <script src="script.js?v=20261011-kakao-fix" defer></script>
+  <script src="script.js?v=20261011-kakao-init-v18-4" defer></script>
 </head>
 <body>
   <main id="invitation" aria-label="김병직과 김정은의 모바일 청첩장">
@@ -146,7 +146,7 @@
     <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="다음 사진">›</button>
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite">계좌번호가 복사되었습니다.</div>
-  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossorigin="anonymous"></script>
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js"></script>
   <script>
     (() => {
       const invitationUrl = 'https://wedding-invitation-mauve-pi.vercel.app/';
@@ -171,11 +171,19 @@
         event.preventDefault();
         copyUrl();
       });
+      function initializeKakao() {
+        if (!window.Kakao || typeof window.Kakao.init !== 'function') return false;
+        if (!window.Kakao.isInitialized()) window.Kakao.init(kakaoKey);
+        return window.Kakao.isInitialized();
+      }
+      // Initialize as soon as the SDK is available, not only after a button click.
+      initializeKakao();
+      window.addEventListener('load', initializeKakao);
       document.getElementById('kakao-share')?.addEventListener('click', (event) => {
         event.preventDefault();
         try {
-          if (!window.Kakao?.Share) throw new Error('Kakao SDK unavailable');
-          if (!Kakao.isInitialized()) Kakao.init(kakaoKey);
+          if (!initializeKakao()) throw new Error('Kakao SDK initialization failed');
+          if (typeof window.Kakao.Share?.sendDefault !== 'function') throw new Error('Kakao.Share.sendDefault unavailable');
           if (!Kakao.isInitialized()) throw new Error('Kakao initialization failed');
           Kakao.Share.sendDefault({
             objectType: 'feed',
@@ -189,7 +197,7 @@
           });
         } catch (error) {
           console.error('카카오 공유 실행 오류:', error);
-          notify('카카오톡 공유를 열지 못했습니다. 카카오 앱 키와 도메인 등록을 확인해 주세요.');
+          notify('카카오톡 공유 오류가 발생했습니다. 개발자 도구의 Console을 확인해 주세요.');
         }
       });
     })();
