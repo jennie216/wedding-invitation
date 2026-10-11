@@ -641,3 +641,10 @@ button{font:inherit;cursor:pointer}
   transform:rotate(23deg)!important;transform-origin:80% 78%!important;
   z-index:100!important;pointer-events:none!important;object-fit:contain!important;
 }
+
+/* v17.1: original image path restored. Compensate for transparent PNG margins. */
+.couple-gallery>.gallery-tree-overlay{
+  right:-150px!important;bottom:-260px!important;width:850px!important;
+  transform:rotate(23deg)!important;transform-origin:78% 66%!important;
+  z-index:100!important;pointer-events:none!important;
+}
