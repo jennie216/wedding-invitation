@@ -8,12 +8,13 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="김병직 ♡ 김정은 | 결혼식에 초대합니다">
   <meta property="og:description" content="2026. 12. 05 (SAT) 12PM · 윈덤그랜드부산 그랜드볼룸홀">
-  <meta property="og:image" content="assets/00_HERO_main.jpg">
+  <meta property="og:image" content="https://wedding-invitation-mauve-pi.vercel.app/assets/kakao_share_bouquet.jpg">
+  <meta property="og:url" content="https://wedding-invitation-mauve-pi.vercel.app/">
   <title>김병직 그리고 김정은, 결혼합니다</title>
   <link rel="preload" as="image" href="assets/00_BG_HERO.jpg">
   <link rel="preload" as="image" href="assets/00_HERO_main.jpg">
   <link rel="stylesheet" href="styles.css?v=20261011-accum-v11">
-  <script src="script.js?v=20261011-accum-v11" defer></script>
+  <script src="script.js?v=20261011-gallery28" defer></script>
 </head>
 <body>
   <main id="invitation" aria-label="김병직과 김정은의 모바일 청첩장">
@@ -67,8 +68,8 @@
         </div>
         <div class="gallery-area reveal">
           <p class="gallery-helper">손가락으로 사진을 넘겨보세요</p>
-          <div id="gallery-track" class="gallery-track" tabindex="0" role="region" aria-roledescription="사진 캐러셀" aria-label="웨딩 사진 27장, 좌우로 넘겨보세요"></div>
-           <div class="gallery-bottom"><span id="gallery-counter">01 / 27</span><div class="gallery-progress"><div id="gallery-progress-fill"></div></div><span>DRAG →</span></div>
+          <div id="gallery-track" class="gallery-track" tabindex="0" role="region" aria-roledescription="사진 캐러셀" aria-label="웨딩 사진 28장, 좌우로 넘겨보세요"></div>
+           <div class="gallery-bottom"><span id="gallery-counter">01 / 28</span><div class="gallery-progress"><div id="gallery-progress-fill"></div></div><span>DRAG →</span></div>
         </div>
         <img class="gallery-tree-overlay" src="assets/TREETREE.png" alt="" aria-hidden="true" loading="lazy">
       </section>
@@ -130,8 +131,8 @@
 
       <section class="share section" aria-label="청첩장 공유하기">
         <div class="share-buttons reveal">
-          <a href="https://www.naver.com" target="_blank" rel="noopener noreferrer" aria-label="카카오 공유 링크 열기"><img src="assets/10_icon_kakao.png" alt=""><span>KAKAO</span></a>
-          <a href="https://invitation.ohad.co.kr" target="_blank" rel="noopener noreferrer" aria-label="청첩장 링크 열기"><img src="assets/10_icon_link.png" alt=""><span>LINK</span></a>
+          <a href="#" id="kakao-share" aria-label="카카오톡으로 청첩장 공유하기"><img src="assets/10_icon_kakao.png" alt=""><span>KAKAO</span></a>
+          <a href="https://wedding-invitation-mauve-pi.vercel.app/" id="copy-invitation-link" aria-label="청첩장 주소 복사하기"><img src="assets/10_icon_link.png" alt=""><span>LINK</span></a>
         </div>
       </section>
       </div>
@@ -141,9 +142,57 @@
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="웨딩 사진 확대 보기" aria-hidden="true">
     <button type="button" class="lightbox-close" id="lightbox-close" aria-label="사진 닫기">×</button>
     <button type="button" class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="이전 사진">‹</button>
-    <figure class="lightbox-figure"><img id="lightbox-image" alt="확대된 웨딩 사진"><figcaption id="lightbox-caption">01 / 27</figcaption></figure>
+    <figure class="lightbox-figure"><img id="lightbox-image" alt="확대된 웨딩 사진"><figcaption id="lightbox-caption">01 / 28</figcaption></figure>
     <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="다음 사진">›</button>
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite">계좌번호가 복사되었습니다.</div>
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossorigin="anonymous"></script>
+  <script>
+    (() => {
+      const invitationUrl = 'https://wedding-invitation-mauve-pi.vercel.app/';
+      const kakaoKey = 'cbb8ea74a80e7b4e90e0d99ac39db046';
+      const notify = (message) => {
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = message;
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2800);
+        } else alert(message);
+      };
+      async function copyUrl() {
+        try {
+          await navigator.clipboard.writeText(invitationUrl);
+          notify('청첩장 링크가 복사되었습니다.');
+        } catch (_) {
+          window.prompt('청첩장 주소를 복사해 주세요.', invitationUrl);
+        }
+      }
+      document.getElementById('copy-invitation-link')?.addEventListener('click', (event) => {
+        event.preventDefault();
+        copyUrl();
+      });
+      document.getElementById('kakao-share')?.addEventListener('click', (event) => {
+        event.preventDefault();
+        try {
+          if (!window.Kakao?.Share) throw new Error('Kakao SDK unavailable');
+          if (!Kakao.isInitialized()) Kakao.init(kakaoKey);
+          Kakao.Share.sendDefault({
+            objectType: 'feed',
+            content: {
+              title: '김병직 ♥ 김정은 결혼합니다',
+              description: '2026년 12월 5일 토요일 낮 12시 · 윈덤그랜드부산 그랜드볼룸홀',
+              imageUrl: invitationUrl + 'assets/kakao_share_bouquet.jpg',
+              link: { mobileWebUrl: invitationUrl, webUrl: invitationUrl }
+            },
+            buttons: [{ title: '청첩장 보러가기', link: { mobileWebUrl: invitationUrl, webUrl: invitationUrl } }]
+          });
+        } catch (error) {
+          console.error('카카오 공유 실행 오류:', error);
+          notify('카카오톡 공유를 열지 못했습니다. 링크를 복사해 주세요.');
+          copyUrl();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
