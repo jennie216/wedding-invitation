@@ -8,13 +8,13 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="김병직 ♡ 김정은 | 결혼식에 초대합니다">
   <meta property="og:description" content="2026. 12. 05 (SAT) 12PM · 윈덤그랜드부산 그랜드볼룸홀">
-  <meta property="og:image" content="https://wedding-invitation-mauve-pi.vercel.app/assets/kakao_share_bouquet.jpg">
+  <meta property="og:image" content="https://wedding-invitation-mauve-pi.vercel.app/assets/kakao_share_bouquet.jpg?v=20261011">
   <meta property="og:url" content="https://wedding-invitation-mauve-pi.vercel.app/">
   <title>김병직 그리고 김정은, 결혼합니다</title>
   <link rel="preload" as="image" href="assets/00_BG_HERO.jpg">
   <link rel="preload" as="image" href="assets/00_HERO_main.jpg">
   <link rel="stylesheet" href="styles.css?v=20261011-accum-v11">
-  <script src="script.js?v=20261011-gallery28" defer></script>
+  <script src="script.js?v=20261011-kakao-fix" defer></script>
 </head>
 <body>
   <main id="invitation" aria-label="김병직과 김정은의 모바일 청첩장">
@@ -176,20 +176,20 @@
         try {
           if (!window.Kakao?.Share) throw new Error('Kakao SDK unavailable');
           if (!Kakao.isInitialized()) Kakao.init(kakaoKey);
+          if (!Kakao.isInitialized()) throw new Error('Kakao initialization failed');
           Kakao.Share.sendDefault({
             objectType: 'feed',
             content: {
               title: '김병직 ♥ 김정은 결혼합니다',
               description: '2026년 12월 5일 토요일 낮 12시 · 윈덤그랜드부산 그랜드볼룸홀',
-              imageUrl: invitationUrl + 'assets/kakao_share_bouquet.jpg',
+              imageUrl: invitationUrl + 'assets/kakao_share_bouquet.jpg?v=20261011',
               link: { mobileWebUrl: invitationUrl, webUrl: invitationUrl }
             },
             buttons: [{ title: '청첩장 보러가기', link: { mobileWebUrl: invitationUrl, webUrl: invitationUrl } }]
           });
         } catch (error) {
           console.error('카카오 공유 실행 오류:', error);
-          notify('카카오톡 공유를 열지 못했습니다. 링크를 복사해 주세요.');
-          copyUrl();
+          notify('카카오톡 공유를 열지 못했습니다. 카카오 앱 키와 도메인 등록을 확인해 주세요.');
         }
       });
     })();
