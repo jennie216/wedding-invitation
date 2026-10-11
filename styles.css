@@ -628,3 +628,16 @@ button{font:inherit;cursor:pointer}
   z-index:95!important;pointer-events:none!important;
 }
 .calendar-location-bg>.calendar{margin-top:0!important;}
+
+/* v17: remove v16 duplicated calendar-image overlay; clean, single continuous seam. */
+.couple-gallery::after{content:none!important;display:none!important;background:none!important;}
+.couple-gallery{background-color:#111!important;}
+.calendar-location-bg>.calendar{margin-top:0!important;}
+/* Foreground tree anchored at the actual gallery/calendar seam, not the carousel. */
+.couple-gallery>.gallery-tree-overlay{
+  position:absolute!important;left:auto!important;top:auto!important;
+  right:-36px!important;bottom:-65px!important;
+  width:610px!important;height:auto!important;max-height:none!important;
+  transform:rotate(23deg)!important;transform-origin:80% 78%!important;
+  z-index:100!important;pointer-events:none!important;object-fit:contain!important;
+}
