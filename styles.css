@@ -545,8 +545,7 @@ button{font:inherit;cursor:pointer}
 @keyframes poem-flow-v5{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 @-webkit-keyframes poem-flow-v5{from{-webkit-transform:translate3d(0,0,0)}to{-webkit-transform:translate3d(-50%,0,0)}}
 .poem-marquee-credit{position:absolute;bottom:88px;left:0;width:100%;text-align:center;font-family:Josun,serif;font-size:20px;letter-spacing:-.5px}
-.letter-greeting-cropped{height:970px!important;overflow:hidden!important;background:#f5f0e6!important}
-.letter-greeting-cropped .letter-composed{display:block;position:absolute!important;top:-1030px!important;left:0!important;width:800px!important;height:2000px!important;max-width:none!important;object-fit:fill!important}
+
 .poem-motion-toggle{display:none!important}
 
 /* v6: each line loops seamlessly; duplicate units have identical natural widths. */
@@ -558,7 +557,7 @@ button{font:inherit;cursor:pointer}
 @-webkit-keyframes poem-endless-v6{from{-webkit-transform:translate3d(0,0,0)}to{-webkit-transform:translate3d(-50%,0,0)}}
 
 
-/* v7: keep the green 01_bg background; remove the duplicated poem from 03helloff by existing greeting crop. */
+/* v8: standalone green poem section with CHO1 overlay; removed composed greeting image. */
 .poem-marquee { isolation:isolate; }
 .poem-marquee-viewport { z-index:1; }
 .poem-cho-overlay {
