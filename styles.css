@@ -577,3 +577,21 @@ button{font:inherit;cursor:pointer}
 .gallery-area{isolation:isolate}
 .gallery-tree-overlay{position:absolute;right:12px;bottom:24px;width:260px;height:auto;max-height:360px;object-fit:contain;z-index:80;pointer-events:none}
 .map-link .map-tmap{font-size:17px!important;line-height:1!important;font-weight:800!important}
+
+/* v12: exact supplied calendar and location background; no duplicated artwork. */
+.calendar-location-bg {height:2000px!important;background:none!important;overflow:visible!important;}
+.calendar-location-bg>.calendar {height:1000px!important;background:#111!important;overflow:hidden!important;}
+.calendar-black-art {width:800px!important;height:1000px!important;object-fit:fill!important;}
+.calendar-location-bg>.location {height:1000px!important;margin:0!important;padding:0!important;background:#243625 url('assets/green.png') no-repeat center top / 800px 1000px!important;overflow:visible!important;}
+/* Center all directions content as a visual group within the green panel. */
+.calendar-location-bg .location-head {top:110px!important;}
+.calendar-location-bg .hotel-illustration {top:270px!important;}
+.calendar-location-bg .location-address {top:715px!important;}
+.calendar-location-bg .map-links {top:auto!important;bottom:125px!important;}
+/* lastbk.png already includes the green-to-cream torn edge. Overlay its green top
+   onto green.png instead of leaving two separate torn edges or a horizontal seam. */
+.ending-unified {margin-top:-65px!important;z-index:7!important;background-position:center top!important;}
+/* Anchor pine to the lower-right gallery background, not inside the photo carousel. */
+.couple-gallery {overflow:visible!important;}
+.gallery-area {isolation:auto!important;}
+.gallery-tree-overlay {position:absolute!important;right:-68px!important;bottom:12px!important;width:515px!important;height:auto!important;max-height:none!important;object-fit:contain!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:90!important;pointer-events:none!important;}
