@@ -596,16 +596,10 @@ button{font:inherit;cursor:pointer}
 .gallery-area {isolation:auto!important;}
 .gallery-tree-overlay {position:absolute!important;right:-68px!important;bottom:12px!important;width:515px!important;height:auto!important;max-height:none!important;object-fit:contain!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:90!important;pointer-events:none!important;}
 
-/* v13: pine branch spans the lower-right gallery edge, outside photo area.
-   Asset is alpha-trimmed and mirrored so branch tip points upper-left. */
-.couple-gallery .gallery-tree-overlay{
-  position:absolute!important;right:-35px!important;bottom:85px!important;
-  width:670px!important;height:auto!important;max-height:none!important;
-  object-fit:contain!important;transform:rotate(-9deg)!important;
-  transform-origin:80% 75%!important;z-index:95!important;pointer-events:none!important;
-}
-/* Raise the complete directions content by 60 design pixels without moving green.png. */
-.calendar-location-bg .location-head{top:50px!important}
-.calendar-location-bg .hotel-illustration{top:210px!important}
-.calendar-location-bg .location-address{top:655px!important}
-.calendar-location-bg .map-links{bottom:185px!important}
+/* v14: move directions foreground 20 design pixels upward from v13; green backdrop stays fixed. */
+.calendar-location-bg .location-head{top:30px!important}
+.calendar-location-bg .hotel-illustration{top:190px!important}
+.calendar-location-bg .location-address{top:635px!important}
+.calendar-location-bg .map-links{top:auto!important;bottom:205px!important}
+/* Restore v12 original TREETREE.png reference. Enlarge and lower by 40 design pixels. */
+.couple-gallery .gallery-tree-overlay{right:-68px!important;bottom:-28px!important;width:610px!important;height:auto!important;max-height:none!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:95!important;pointer-events:none!important}
