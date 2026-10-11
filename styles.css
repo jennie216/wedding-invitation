@@ -426,7 +426,7 @@ button{font:inherit;cursor:pointer}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
 
 /* 2026-10-10: one continuous, non-animated background from calendar through location */
-.calendar-location-bg{position:relative;width:800px;height:2000px;background:#203b2b url('assets/04bgf.png') no-repeat center top / 800px 2000px;overflow:hidden}
+.calendar-location-bg{position:relative;width:800px;height:2000px;background:#203b2b url('assets/06_bk.png') no-repeat center top / 800px 2000px;overflow:hidden}
 .calendar-location-bg>.section{background:none!important}
 .calendar-location-bg .calendar{height:850px}
 .calendar-location-bg .location{height:1150px;overflow:visible}
@@ -458,7 +458,7 @@ button{font:inherit;cursor:pointer}
 .poem-by{top:810px}
 .pearl-flower{z-index:9999!important}
 /* 04bgf remains one continuous calendar-to-location background */
-.calendar-location-bg{background:#203b2b url("assets/04bgf.png") no-repeat center top / 800px 2000px!important}
+.calendar-location-bg{background:#203b2b url("assets/06_bk.png") no-repeat center top / 800px 2000px!important}
 .calendar-location-bg>.section{background:transparent!important;background-image:none!important}
 .location-head{top:191px!important}
 .location-head h2{font-weight:900!important;-webkit-text-stroke:1px currentColor}
@@ -568,3 +568,12 @@ button{font:inherit;cursor:pointer}
 .poem-marquee-credit {z-index:101; display:flex; flex-direction:column; align-items:center; gap:10px; line-height:1.35;}
 .thanks-video-section {height:1200px; overflow:hidden; background:#131313; position:relative;}
 .thanks-image {display:block; width:800px; height:1200px; object-fit:contain; background:#131313;}
+
+/* v11 cumulative revisions: new calendar artwork and gallery foreground. */
+.calendar-location-bg{height:2150px!important;background:#111!important;overflow:hidden!important}
+.calendar-location-bg>.calendar{height:1000px!important;position:relative;background:#111!important;overflow:hidden!important}
+.calendar-black-art{position:absolute;inset:0;width:800px;height:1000px;display:block;object-fit:contain;z-index:3;pointer-events:none}
+.calendar-location-bg>.location{height:1150px!important;margin:0!important;padding:0!important;background:#131313 url('assets/06_bk.png') no-repeat center top / 800px 1150px!important;overflow:visible!important}
+.gallery-area{isolation:isolate}
+.gallery-tree-overlay{position:absolute;right:12px;bottom:24px;width:260px;height:auto;max-height:360px;object-fit:contain;z-index:80;pointer-events:none}
+.map-link .map-tmap{font-size:17px!important;line-height:1!important;font-weight:800!important}

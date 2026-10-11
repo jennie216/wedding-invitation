@@ -24,23 +24,19 @@
   }
   document.fonts?.ready?.then(resizeInvitation);
 
-  // Replaying entrance animation, downward scrolling only.
-  // Background elements never receive .reveal.
-  const reveals = [...document.querySelectorAll('.reveal')];
-  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Reveal once, then keep foreground layers visible on both scroll directions.
+  // Never remove is-visible when an element leaves the viewport.
+  const reveals = [...document.querySelectorAll('.reveal, .reveal-left')];
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function updateReveals(initial = false) {
     const y = window.scrollY || window.pageYOffset || 0;
     const movingDown = y > lastScroll + 1;
-    if (!initial && !movingDown) { lastScroll = y; return; }
     lastScroll = y;
     const vh = window.innerHeight;
     for (const el of reveals) {
+      if (el.classList.contains('is-visible')) continue;
       const r = el.getBoundingClientRect();
-      if (initial) {
-        el.classList.toggle('is-visible',r.top < vh && r.bottom > 0);
-      } else if (r.bottom < 0 || r.top > vh + 25) {
-        el.classList.remove('is-visible');
-      } else if (r.top < vh * .94 && r.bottom > 0) {
+      if ((initial || movingDown) && r.top < vh * .94 && r.bottom > 0) {
         el.classList.add('is-visible');
       }
     }
@@ -54,7 +50,7 @@
       requestAnimationFrame(() => { updateReveals(); scheduled = false; });
     }, {passive:true});
   } else {
-    reveals.forEach(el=>el.classList.add('is-visible'));
+    reveals.forEach(el => el.classList.add('is-visible'));
   }
 
   // Files are presented in numerical, not lexical, filename ascending order.
