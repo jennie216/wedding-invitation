@@ -567,4 +567,4 @@ button{font:inherit;cursor:pointer}
 }
 .poem-marquee-credit {z-index:101; display:flex; flex-direction:column; align-items:center; gap:10px; line-height:1.35;}
 .thanks-video-section {height:1200px; overflow:hidden; background:#131313; position:relative;}
-.thanks-video {display:block; width:800px; height:1200px; object-fit:cover; background:#131313;}
+.thanks-image {display:block; width:800px; height:1200px; object-fit:contain; background:#131313;}

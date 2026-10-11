@@ -47,7 +47,7 @@
         <div class="poem-marquee-credit"><span>청혼 - 안희연</span><span>『당근밭 걷기』, 문학동네</span></div>
       </section>
       <section class="thanks-video-section section" aria-label="감사 영상">
-        <video class="thanks-video" src="assets/thanksto.mp4" autoplay muted playsinline webkit-playsinline preload="metadata" loop aria-label="감사 영상"></video>
+        <img class="thanks-image" src="assets/thanksto.png" alt="저희의 약속을 전하는 인삿말" loading="lazy" decoding="async">
       </section>
 
       <section class="couple-gallery section" aria-label="신랑 신부 및 웨딩 갤러리">
@@ -143,43 +143,5 @@
     <button type="button" class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="다음 사진">›</button>
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite">계좌번호가 복사되었습니다.</div>
-<script>
-(function () {
-  function initThanksVideo() {
-    var video = document.querySelector('.thanks-video');
-    if (!video) return;
-    video.muted = true;
-    video.defaultMuted = true;
-    video.playsInline = true;
-    video.setAttribute('muted', '');
-    video.setAttribute('playsinline', '');
-    function setPlaying(visible) {
-      if (visible && !document.hidden) {
-        var p = video.play();
-        if (p && typeof p.catch === 'function') p.catch(function () {});
-      } else { video.pause(); }
-    }
-    if ('IntersectionObserver' in window) {
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) { setPlaying(entry.isIntersecting && entry.intersectionRatio >= 0.15); });
-      }, {threshold: [0, 0.15, 0.5]});
-      observer.observe(video);
-    } else {
-      function check() {
-        var r = video.getBoundingClientRect();
-        setPlaying(r.bottom > 0 && r.top < window.innerHeight);
-      }
-      window.addEventListener('scroll', check, {passive:true});
-      window.addEventListener('resize', check);
-      check();
-    }
-    document.addEventListener('visibilitychange', function () { if (document.hidden) video.pause(); else {
-      var r=video.getBoundingClientRect(); setPlaying(r.bottom>0 && r.top<window.innerHeight);
-    }});
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initThanksVideo);
-  else initThanksVideo();
-})();
-</script>
 </body>
 </html>
