@@ -575,7 +575,7 @@ button{font:inherit;cursor:pointer}
 .calendar-black-art{position:absolute;inset:0;width:800px;height:1000px;display:block;object-fit:contain;z-index:3;pointer-events:none}
 .calendar-location-bg>.location{height:1150px!important;margin:0!important;padding:0!important;background:#131313 url('assets/06_bk.png') no-repeat center top / 800px 1150px!important;overflow:visible!important}
 .gallery-area{isolation:isolate}
-.gallery-tree-overlay{position:absolute;right:12px;bottom:24px;width:260px;height:auto;max-height:360px;object-fit:contain;z-index:80;pointer-events:none}
+.gallery-tree-overlay{position:absolute;right:12px;bottom:24px;height:auto;max-height:360px;object-fit:contain;z-index:80;pointer-events:none}
 .map-link .map-tmap{font-size:17px!important;line-height:1!important;font-weight:800!important}
 
 /* v12: exact supplied calendar and location background; no duplicated artwork. */
@@ -594,7 +594,7 @@ button{font:inherit;cursor:pointer}
 /* Anchor pine to the lower-right gallery background, not inside the photo carousel. */
 .couple-gallery {overflow:visible!important;}
 .gallery-area {isolation:auto!important;}
-.gallery-tree-overlay {position:absolute!important;right:-68px!important;bottom:12px!important;width:515px!important;height:auto!important;max-height:none!important;object-fit:contain!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:90!important;pointer-events:none!important;}
+.gallery-tree-overlay {position:absolute!important;right:-68px!important;bottom:12px!important;height:auto!important;max-height:none!important;object-fit:contain!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:90!important;pointer-events:none!important;}
 
 /* v14: move directions foreground 20 design pixels upward from v13; green backdrop stays fixed. */
 .calendar-location-bg .location-head{top:30px!important}
@@ -602,11 +602,11 @@ button{font:inherit;cursor:pointer}
 .calendar-location-bg .location-address{top:635px!important}
 .calendar-location-bg .map-links{top:auto!important;bottom:205px!important}
 /* Restore v12 original TREETREE.png reference. Enlarge and lower by 40 design pixels. */
-.couple-gallery .gallery-tree-overlay{right:-68px!important;bottom:-28px!important;width:610px!important;height:auto!important;max-height:none!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:95!important;pointer-events:none!important}
+.couple-gallery .gallery-tree-overlay{right:-68px!important;bottom:-28px!important;height:auto!important;max-height:none!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:95!important;pointer-events:none!important}
 
 /* v15: Anchor TREETREE to the gallery section, 60 design px above its bottom edge. */
 .couple-gallery{position:relative!important;}
-.couple-gallery > .gallery-tree-overlay{position:absolute!important;right:0!important;bottom:60px!important;top:auto!important;left:auto!important;width:610px!important;height:auto!important;max-height:none!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:95!important;pointer-events:none!important;}
+.couple-gallery > .gallery-tree-overlay{position:absolute!important;right:0!important;bottom:60px!important;top:auto!important;left:auto!important;height:auto!important;max-height:none!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:95!important;pointer-events:none!important;}
 
 /* v16 — blend gallery into the unchanged calendar artwork. The last 150px
    of the gallery fades into the first 150px of calenderblack2.png. */
@@ -622,7 +622,7 @@ button{font:inherit;cursor:pointer}
 /* Position the original pine relative to the gallery bottom, not the carousel. */
 .couple-gallery > .gallery-tree-overlay{
   position:absolute!important;right:0!important;bottom:20px!important;
-  top:auto!important;left:auto!important;width:610px!important;
+  top:auto!important;left:auto!important;
   height:auto!important;max-height:none!important;object-fit:contain!important;
   transform:rotate(23deg)!important;transform-origin:85% 65%!important;
   z-index:95!important;pointer-events:none!important;
@@ -637,14 +637,17 @@ button{font:inherit;cursor:pointer}
 .couple-gallery>.gallery-tree-overlay{
   position:absolute!important;left:auto!important;top:auto!important;
   right:-36px!important;bottom:-65px!important;
-  width:610px!important;height:auto!important;max-height:none!important;
+  height:auto!important;max-height:none!important;
   transform:rotate(23deg)!important;transform-origin:80% 78%!important;
   z-index:100!important;pointer-events:none!important;object-fit:contain!important;
 }
 
 /* v17.1: original image path restored. Compensate for transparent PNG margins. */
 .couple-gallery>.gallery-tree-overlay{
-  right:-150px!important;bottom:-260px!important;width:850px!important;
+  right:-150px!important;bottom:-260px!important;
   transform:rotate(23deg)!important;transform-origin:78% 66%!important;
   z-index:100!important;pointer-events:none!important;
 }
+
+/* v17.2: Display the original TREETREE.png at its intrinsic dimensions. No forced enlargement. */
+.couple-gallery > img.gallery-tree-overlay { width:auto!important; max-width:none!important; height:auto!important; }
