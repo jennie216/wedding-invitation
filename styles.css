@@ -426,7 +426,7 @@ button{font:inherit;cursor:pointer}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
 
 /* 2026-10-10: one continuous, non-animated background from calendar through location */
-.calendar-location-bg{position:relative;width:800px;height:2000px;background:#203b2b url('assets/06_bk.png') no-repeat center top / 800px 2000px;overflow:hidden}
+.calendar-location-bg{position:relative;width:800px;height:2000px;background:#203b2b url('assets/04bgf.png') no-repeat center top / 800px 2000px;overflow:hidden}
 .calendar-location-bg>.section{background:none!important}
 .calendar-location-bg .calendar{height:850px}
 .calendar-location-bg .location{height:1150px;overflow:visible}
@@ -458,7 +458,7 @@ button{font:inherit;cursor:pointer}
 .poem-by{top:810px}
 .pearl-flower{z-index:9999!important}
 /* 04bgf remains one continuous calendar-to-location background */
-.calendar-location-bg{background:#203b2b url("assets/06_bk.png") no-repeat center top / 800px 2000px!important}
+.calendar-location-bg{background:#203b2b url("assets/04bgf.png") no-repeat center top / 800px 2000px!important}
 .calendar-location-bg>.section{background:transparent!important;background-image:none!important}
 .location-head{top:191px!important}
 .location-head h2{font-weight:900!important;-webkit-text-stroke:1px currentColor}
@@ -481,173 +481,6 @@ button{font:inherit;cursor:pointer}
 .js-reveal-ready .reveal.is-visible,.js-reveal-ready .reveal-left.is-visible{opacity:1;transform:translate3d(0,0,0)}
 @media(prefers-reduced-motion:reduce){.js-reveal-ready .reveal{opacity:1!important;transform:none!important;transition:none!important}}
 
-
-/* Correction: 03hello.png includes the poem. The separate poem section is removed. */
-/* Floral stems should reach the hero bottom; keep date and venue fixed above flowers. */
-.hero-flower-left{
-  width:530px!important;
-  left:-138px!important;
-  top:auto!important;
-  bottom:-8px!important;
-  z-index:9!important;
-}
-.hero-flower-bottom{
-  width:475px!important;
-  left:510px!important;
-  top:auto!important;
-  bottom:-16px!important;
-  rotate:-43deg;
-  z-index:9!important;
-}
-.hero-flower-right{z-index:9!important}
-.hero-details{z-index:120!important}
-.hero-detail,.hero-detail img,.hero-detail span{position:relative;z-index:121}
-.hero-names{z-index:30!important}
-
-/* Latest accumulated revisions: 03hellof, directions +60px, information centered. */
-/* Move foreground elements, not the shared 04bgf background. */
-.calendar-location-bg .location-head{top:251px!important}
-.calendar-location-bg .hotel-illustration{top:360px!important}
-.calendar-location-bg .location-address{top:870px!important}
-.calendar-location-bg .map-links{bottom:65px!important}
-/* Center the two information items as one group between the two rules. */
-.information .information-divider{top:360px!important}
-.information .information-divider-bottom{top:740px!important}
-.information .information-items{top:440px!important}
-
-
-/* Latest corrections: composed greeting, hotel centering, information divider. */
-/* Hotel artwork is centered in the gap between LOCATION and venue text. */
-.calendar-location-bg .hotel-illustration {
-  top: 392px !important;
-}
-/* Move only the lower divider 20px down. */
-.information .information-divider-bottom {
-  top: 760px !important;
-}
-/* Center the parking/ATM group between the two divider lines. */
-.information .information-items {
-  top: 360px !important;
-  height: 400px !important;
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
-}
-
-
-/* v5: video-inspired five-line marquee, using the user's green floral background. */
-.poem-marquee{height:1030px!important;position:relative;overflow:hidden!important;background:#202820 url("assets/01_bg.png") center center/800px auto no-repeat!important;color:#f4f0e7}
-.poem-marquee-viewport{position:absolute;left:0;right:0;top:342px;height:370px;display:flex;align-items:center;overflow:hidden;isolation:isolate}
-.poem-marquee-track{display:flex!important;flex-wrap:nowrap!important;width:max-content!important;max-width:none!important;opacity:1!important;visibility:visible!important;animation:poem-flow-v5 18s linear infinite!important;-webkit-animation:poem-flow-v5 18s linear infinite!important;animation-play-state:running!important;will-change:transform}
-.poem-marquee-copy{display:flex;flex-direction:column;flex:0 0 auto;width:2300px;box-sizing:border-box;justify-content:center;gap:14px;padding-right:0;white-space:nowrap;font-family:Josun,serif;font-weight:700;font-size:48px;line-height:1.32;letter-spacing:-1.2px;text-shadow:0 1px 1px rgba(0,0,0,.25)}
-.poem-marquee-copy span{display:block}
-@keyframes poem-flow-v5{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
-@-webkit-keyframes poem-flow-v5{from{-webkit-transform:translate3d(0,0,0)}to{-webkit-transform:translate3d(-50%,0,0)}}
-.poem-marquee-credit{position:absolute;bottom:88px;left:0;width:100%;text-align:center;font-family:Josun,serif;font-size:20px;letter-spacing:-.5px}
-
-.poem-motion-toggle{display:none!important}
-
-/* v6: each line loops seamlessly; duplicate units have identical natural widths. */
-.poem-marquee-viewport{display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:stretch!important;gap:14px!important}
-.poem-endless-row{width:100%;overflow:hidden;white-space:nowrap;flex:0 0 auto;font-family:Josun,serif;font-weight:700;font-size:48px;line-height:1.32;letter-spacing:-1.2px;text-shadow:0 1px 1px rgba(0,0,0,.25)}
-.poem-endless-track{display:flex;width:max-content;max-width:none;animation:poem-endless-v6 54s linear infinite!important;-webkit-animation:poem-endless-v6 54s linear infinite!important;animation-play-state:running!important;will-change:transform}
-.poem-endless-unit{display:block;flex:0 0 auto;white-space:pre}
-@keyframes poem-endless-v6{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
-@-webkit-keyframes poem-endless-v6{from{-webkit-transform:translate3d(0,0,0)}to{-webkit-transform:translate3d(-50%,0,0)}}
-
-
-/* v8: standalone green poem section with CHO1 overlay; removed composed greeting image. */
-.poem-marquee { isolation:isolate; }
-.poem-marquee-viewport { z-index:1; }
-.poem-cho-overlay {
-  position:absolute; z-index:100; pointer-events:none;
-  width:410px; height:auto; left:50%; top:50%;
-  transform:translate(-50%,-50%); object-fit:contain;
-}
-.poem-marquee-credit {z-index:101; display:flex; flex-direction:column; align-items:center; gap:10px; line-height:1.35;}
-.thanks-video-section {height:1200px; overflow:hidden; background:#131313; position:relative;}
-.thanks-image {display:block; width:800px; height:1200px; object-fit:contain; background:#131313;}
-
-/* v11 cumulative revisions: new calendar artwork and gallery foreground. */
-.calendar-location-bg{height:2150px!important;background:#111!important;overflow:hidden!important}
-.calendar-location-bg>.calendar{height:1000px!important;position:relative;background:#111!important;overflow:hidden!important}
-.calendar-black-art{position:absolute;inset:0;width:800px;height:1000px;display:block;object-fit:contain;z-index:3;pointer-events:none}
-.calendar-location-bg>.location{height:1150px!important;margin:0!important;padding:0!important;background:#131313 url('assets/06_bk.png') no-repeat center top / 800px 1150px!important;overflow:visible!important}
-.gallery-area{isolation:isolate}
-.gallery-tree-overlay{position:absolute;right:12px;bottom:24px;height:auto;max-height:360px;object-fit:contain;z-index:80;pointer-events:none}
-.map-link .map-tmap{font-size:17px!important;line-height:1!important;font-weight:800!important}
-
-/* v12: exact supplied calendar and location background; no duplicated artwork. */
-.calendar-location-bg {height:2000px!important;background:none!important;overflow:visible!important;}
-.calendar-location-bg>.calendar {height:1000px!important;background:#111!important;overflow:hidden!important;}
-.calendar-black-art {width:800px!important;height:1000px!important;object-fit:fill!important;}
-.calendar-location-bg>.location {height:1000px!important;margin:0!important;padding:0!important;background:#243625 url('assets/green.png') no-repeat center top / 800px 1000px!important;overflow:visible!important;}
-/* Center all directions content as a visual group within the green panel. */
-.calendar-location-bg .location-head {top:110px!important;}
-.calendar-location-bg .hotel-illustration {top:270px!important;}
-.calendar-location-bg .location-address {top:715px!important;}
-.calendar-location-bg .map-links {top:auto!important;bottom:125px!important;}
-/* lastbk.png already includes the green-to-cream torn edge. Overlay its green top
-   onto green.png instead of leaving two separate torn edges or a horizontal seam. */
-.ending-unified {margin-top:-65px!important;z-index:7!important;background-position:center top!important;}
-/* Anchor pine to the lower-right gallery background, not inside the photo carousel. */
-.couple-gallery {overflow:visible!important;}
-.gallery-area {isolation:auto!important;}
-.gallery-tree-overlay {position:absolute!important;right:-68px!important;bottom:12px!important;height:auto!important;max-height:none!important;object-fit:contain!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:90!important;pointer-events:none!important;}
-
-/* v14: move directions foreground 20 design pixels upward from v13; green backdrop stays fixed. */
-.calendar-location-bg .location-head{top:30px!important}
-.calendar-location-bg .hotel-illustration{top:190px!important}
-.calendar-location-bg .location-address{top:635px!important}
-.calendar-location-bg .map-links{top:auto!important;bottom:205px!important}
-/* Restore v12 original TREETREE.png reference. Enlarge and lower by 40 design pixels. */
-.couple-gallery .gallery-tree-overlay{right:-68px!important;bottom:-28px!important;height:auto!important;max-height:none!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:95!important;pointer-events:none!important}
-
-/* v15: Anchor TREETREE to the gallery section, 60 design px above its bottom edge. */
-.couple-gallery{position:relative!important;}
-.couple-gallery > .gallery-tree-overlay{position:absolute!important;right:0!important;bottom:60px!important;top:auto!important;left:auto!important;height:auto!important;max-height:none!important;transform:rotate(23deg)!important;transform-origin:85% 65%!important;z-index:95!important;pointer-events:none!important;}
-
-/* v16 — blend gallery into the unchanged calendar artwork. The last 150px
-   of the gallery fades into the first 150px of calenderblack2.png. */
-.couple-gallery{position:relative!important;overflow:visible!important;}
-.couple-gallery::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:150px;
-  background-image:url('assets/calenderblack2.png');
-  background-size:800px 1000px;background-repeat:no-repeat;background-position:center top;
-  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 100%);
-  mask-image:linear-gradient(to bottom,transparent 0%,#000 100%);
-  z-index:4;pointer-events:none;
-}
-/* Position the original pine relative to the gallery bottom, not the carousel. */
-.couple-gallery > .gallery-tree-overlay{
-  position:absolute!important;right:0!important;bottom:20px!important;
-  top:auto!important;left:auto!important;
-  height:auto!important;max-height:none!important;object-fit:contain!important;
-  transform:rotate(23deg)!important;transform-origin:85% 65%!important;
-  z-index:95!important;pointer-events:none!important;
-}
-.calendar-location-bg>.calendar{margin-top:0!important;}
-
-/* v17: remove v16 duplicated calendar-image overlay; clean, single continuous seam. */
-.couple-gallery::after{content:none!important;display:none!important;background:none!important;}
-.couple-gallery{background-color:#111!important;}
-.calendar-location-bg>.calendar{margin-top:0!important;}
-/* Foreground tree anchored at the actual gallery/calendar seam, not the carousel. */
-.couple-gallery>.gallery-tree-overlay{
-  position:absolute!important;left:auto!important;top:auto!important;
-  right:-36px!important;bottom:-65px!important;
-  height:auto!important;max-height:none!important;
-  transform:rotate(23deg)!important;transform-origin:80% 78%!important;
-  z-index:100!important;pointer-events:none!important;object-fit:contain!important;
-}
-
-/* v17.1: original image path restored. Compensate for transparent PNG margins. */
-.couple-gallery>.gallery-tree-overlay{
-  right:-150px!important;bottom:-260px!important;
-  transform:rotate(23deg)!important;transform-origin:78% 66%!important;
-  z-index:100!important;pointer-events:none!important;
-}
-
-/* v17.2: Display the original TREETREE.png at its intrinsic dimensions. No forced enlargement. */
-.couple-gallery > img.gallery-tree-overlay { width:auto!important; max-width:none!important; height:auto!important; }
+/* Hero names and invitation line: user-provided Chungbook font */
+@font-face{font-family:ChungbookInvitation;src:url("assets/fonts/chungbook.ttf") format("truetype");font-display:swap;}
+.hero-names,.hero-names p,.hero-names .hero-subtitle{font-family:ChungbookInvitation,serif;}
