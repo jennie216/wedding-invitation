@@ -1,0 +1,12 @@
+/* Hero typography only. All existing page styles and animations are untouched. */
+@font-face {
+  font-family: "ChungbookHero";
+  src: url("assets/fonts/chungbook.ttf") format("truetype");
+  font-display: swap;
+}
+.hero-names > p,
+.hero-names > p.hero-subtitle {
+  font-family: "ChungbookHero", "Josun", serif !important;
+}
+/* Keep the existing infinity symbol style exactly as before. */
+.hero-names .infinity { font-family: Georgia, serif !important; }
