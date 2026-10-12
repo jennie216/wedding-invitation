@@ -54,15 +54,14 @@
   }
 
   // Files are presented in numerical, not lexical, filename ascending order.
-  const count = 30;
+  const count = 28;
   const track = document.getElementById('gallery-track');
   const progress = document.getElementById('gallery-progress-fill');
   const counter = document.getElementById('gallery-counter');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-image');
   const lightboxCaption = document.getElementById('lightbox-caption');
-  const galleryOrder = [1, 2, 3, 4, 5, 6, 7, 8, 29, 9, 10, 11, 12, 13, 28, 14, 15, 16, 17, 18, 19, 30, 20, 21, 22, 23, 24, 25, 26, 27];
-  const file = i => `assets/gallery/IMG_${String(galleryOrder[i]).padStart(2,'0')}.jpg`;
+  const file = i => `assets/gallery/IMG_${String(i === 13 ? 28 : i < 13 ? i + 1 : i).padStart(2,'0')}.jpg`;
   let current = 0;
   let lastFocus = null;
   let didDrag = false;
