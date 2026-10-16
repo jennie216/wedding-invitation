@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Cantata One Hero";
+  src: url("CantataOne-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 /* Hero invite text and hero names only. Keep styles.css, animations, layout and other sections unchanged. */
 .hero-invite-copy{
   position:absolute;
@@ -31,12 +39,12 @@
   font-style:italic;
 }
 .hero-names > p.hero-english-line {
-  font-family: "Bodoni Moda", "Times New Roman", serif !important;
+  font-family: "Cantata One Hero", serif !important;
   font-size: 49px;
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   font-optical-sizing: auto;
-  line-height: 1.18;
-  letter-spacing: -0.85px;
+  line-height: 1.1;
+  letter-spacing: -1.1px;
   white-space: nowrap;
   margin: 0;
   -webkit-text-stroke: 0 !important;
@@ -44,7 +52,7 @@
 }
 .hero-names > .hero-english-divider {
   display: block;
-  width: 68px;
+  width: 70px;
   height: 1px;
   margin: 16px auto 17px;
   background: currentColor;
