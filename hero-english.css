@@ -1,0 +1,51 @@
+/* Hero invite text and hero names only. Keep styles.css, animations, layout and other sections unchanged. */
+.hero-invite-copy{
+  position:absolute;
+  left:56px;
+  top:176px;
+  width:650px;
+  color:#efe4d4;
+  z-index:8;
+  text-align:left;
+  pointer-events:none;
+}
+.hero-invite-copy .hero-invite-main,
+.hero-invite-copy .hero-invite-sub{
+  margin:0;
+  font-family:"Cormorant Garamond","Bodoni Moda","Times New Roman",serif;
+  font-weight:500;
+  text-transform:uppercase;
+  font-optical-sizing:auto;
+}
+.hero-invite-copy .hero-invite-main{
+  font-size:81px;
+  line-height:0.9;
+  letter-spacing:-1.7px;
+}
+.hero-invite-copy .hero-invite-sub{
+  margin-top:12px;
+  margin-left:13px;
+  font-size:40px;
+  line-height:0.95;
+  letter-spacing:4.4px;
+  font-style:italic;
+}
+.hero-names > p.hero-english-line {
+  font-family: "Bodoni Moda", "Times New Roman", serif !important;
+  font-size: 49px;
+  font-weight: 500 !important;
+  font-optical-sizing: auto;
+  line-height: 1.18;
+  letter-spacing: -0.85px;
+  white-space: nowrap;
+  margin: 0;
+  -webkit-text-stroke: 0 !important;
+  text-transform: uppercase;
+}
+.hero-names > .hero-english-divider {
+  display: block;
+  width: 68px;
+  height: 1px;
+  margin: 16px auto 17px;
+  background: currentColor;
+}
